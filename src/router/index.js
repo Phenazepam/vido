@@ -7,7 +7,11 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    
+    name: 'Main',
+    meta:{
+      layout: 'main'
+    },
+    component: () => import(/* webpackChunkName: "main" */ '../views/MainPage.vue')
   },
   {
     path: '/about',
