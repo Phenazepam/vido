@@ -1,7 +1,7 @@
 <template>
-  <div class="vi-select">
-    <div class="vi-select__inner" @click="areOptionsVisible = !areOptionsVisible">
-      <p class="title">
+  <div class="select">
+    <div class="select__inner" @click="areOptionsVisible = !areOptionsVisible">
+      <p class="select__title">
         {{ selected ? selected.text : "Выберите опцию" }}
       </p>
       <img src="../../public/imgs/select_vector.png" alt="" />
@@ -47,51 +47,54 @@ export default {
 </script>
 
 <style lang="scss">
-.vi-select p {
+.select p {
   margin: 0;
 }
-.vi-select {
+.select {
   position: relative;
   min-width: auto;
   padding: 0 5px;
 }
-.vi-select__inner {
-  display: block;
-  padding: 8px 12px;
+.select__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
   cursor: pointer;
   border-radius: 4px;
   margin: 0 auto;
+  
 }
-/* .vi-select__inner:hover {
-  border-bottom:1px solid #eaeaea;;
-} */
+.select__inner img{
+  margin-left: 5px;
+}
+.select__title{
+  white-space: nowrap;
+  overflow: hidden; 
+  padding: 5px; 
+  text-overflow: ellipsis; 
+}
 .options {
   border: solid 1px #aeaeae;
   position: absolute;
-  top: 34px;
+  top: 40px;
   right: 0;
   left: 0;
   width: 100%;
   margin: 0 auto;
   cursor: pointer;
+  background-color: #fff;
 }
 .options p:hover {
   background: #e7e7e7;
 }
 .options p {
-  padding: 5px;
   display: flex;
   justify-content: space-between;
+  white-space: nowrap; 
+  overflow: hidden; 
+  padding: 5px; 
+  text-overflow: ellipsis; 
 }
-.vi-select__inner{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.vi-select__inner img{
-  margin-left: 10px;
-}
-/* .options p img{
-  justify-content: end;
-} */
+
 </style>

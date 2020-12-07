@@ -1,28 +1,36 @@
 <template>
   <div>
-    <div class="container">
-      <div class="header">
-        <div class="header__logo">VIDODO</div>
-        <div class="header__island">
-          <div class="island_icon">111</div>
-          <div class="island_name">Lanzarote</div>
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <div class="header__logo">
+            <img src="../../public/imgs/Logo.png" alt="">
+          </div>
+          <div class="header__island">
+            <img src="../../public/imgs/lanzarote_icon.png" class="island_icon" alt="">
+            <div class="island_name">Lanzarote</div>
+          </div>
+          <vi-select
+            class="languageSelector"
+            v-model="selectedLanguage"
+            :items="languageOptions"
+            :active="selectedLanguage"
+          />
+          <vi-select
+            class="currencySelector"
+            v-model="selectedCurrency"
+            :items="currencyOptions"
+            :active="selectedCurrency"
+          />
+          <a href="#" class="header__catalog">Каталог</a>
+          <a href="#" class="header__help">Помощь</a>
+          <a href="#" class="header__favourite">Избранное</a>
+          <a href="#" class="header__basket">Корзина</a>
+          <a href="#" class="header__account">Личный кабинет</a>
         </div>
-        <vi-select 
-          v-model="selectedLanguage" 
-          :items="languageOptions" 
-          :active="selectedLanguage"
-        />
-        <vi-select
-          class="currencySelector"
-          v-model="selectedCurrency"
-          :items="currencyOptions"
-          :active="selectedCurrency"
-        />
       </div>
-    </div>
-    <div>
-      <router-view/>
-    </div>
+    </header>
+    <router-view />
   </div>
 </template>
 <script>
@@ -42,41 +50,61 @@ export default {
         { value: 2, text: "Французский" },
         { value: 3, text: "Испанский" },
         { value: 4, text: "Немецкий" },
+        { value: 5, text: "asdfasdasdasdasdasdasdasdasdas" },
       ],
-      
-      selectedCurrency: {value: 0, text: "RUB"},
+
+      selectedCurrency: { value: 0, text: "RUB" },
       currencyOptions: [
-        {value: 0, text: "RUB"},
-        {value: 1, text: "EUR"},
-        {value: 2, text: "USD"},
-        {value: 3, text: "GBP"},
-      ]
+        { value: 0, text: "RUB" },
+        { value: 1, text: "EUR" },
+        { value: 2, text: "USD" },
+        { value: 3, text: "GBP" },
+      ],
     };
   },
 };
 </script>
 <style lang="scss">
+.header{
+  padding-left: 15px;
+  padding-right: 15px;
+  
+}
 .container {
-  width: 80%;
-  min-height: 30px;
-  align-items: center;
+  width: 88%;
+  max-width: 1440px;
   margin: 0 auto;
 }
-.header {
+.header__inner{
   display: flex;
+  justify-content: space-between;
+  padding: 35px 0;
   align-items: center;
-  justify-content: flex-start;
 }
-.header__island {
+.header__island{
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 20px;
+  justify-content: space-between;
 }
-.languageSelector{
-  width: 120px;
+.island_icon{
+  margin-right: 6px;
 }
-.currencySelector{
+.header__inner a{
+  text-decoration: none;
+  color: #1E2843;
+}
+.languageSelector {
+  padding: 0;
+  width: 140px;
+  border-bottom: solid 2px transparent;
+}
+.languageSelector:hover {
+  border-bottom: solid 2px #aeaeae;
+}
+.currencySelector {
   width: 70px;
+  border-bottom: solid 1px transparent;
 }
+.currencySelector:hover {
+  border-bottom: solid 1px #aeaeae;
+} 
 </style>
