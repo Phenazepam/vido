@@ -1,4 +1,5 @@
-@import "http://fonts.fontstorage.com/import/gilroy.css";
+/* @import "http://fonts.fontstorage.com/import/gilroy.css"; */
+@import "../assets/gilroy/stylesheet.css";
 #app{
     font-family: 'Gilroy';
     font-size: 16px;

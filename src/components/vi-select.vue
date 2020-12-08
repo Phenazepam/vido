@@ -71,7 +71,6 @@ export default {
 .select__title{
   white-space: nowrap;
   overflow: hidden; 
-  padding: 5px; 
   text-overflow: ellipsis; 
 }
 .options {
