@@ -1,5 +1,6 @@
 <template>
   <div id="MainPage">
+    <!-- INTRO -->
     <div class="intro">
       <div class="intro__inner">
         <h2 class="intro__title">
@@ -9,14 +10,51 @@
           <input type="date" />
           <button>SELECT</button>
         </div>
-      </div>           
+      </div>
+    </div>
+    <!-- FEATURES -->
+    <div class="feature">
+      <div class="container">
+        <div class="feature__inner">
+          <div class="feature__item">
+            <div class="feature__item_icon">
+              <img src="../../public/imgs/features/cancellation_icon.png" alt="">
+            </div>
+            <div class="feature__item_title">Cancellation of reservation</div>
+            <div class="feature__item_text">
+              Have you changed your plans? No worries. Please cancel your
+              booking 24 hours before the start of most tours and activities to
+              receive a full refund.
+            </div>
+          </div>
+          <div class="feature__item">
+            <div class="feature__item_icon">
+              <img src="../../public/imgs/features/noqueues_icon.png" alt="">
+            </div>
+            <div class="feature__item_title">No queues</div>
+            <div class="feature__item_text">
+              Have you changed your plans? No worries. Please cancel your booking 24 hours before the start of most tours and activities to receive a full refund.
+            </div>
+          </div>
+          <div class="feature__item">
+            <div class="feature__item_icon">
+              <img src="../../public/imgs/features/support_icon.png" alt="">
+            </div>
+            <div class="feature__item_title">24/7 support</div>
+            <div class="feature__item_text">
+              Have you changed your plans? No worries. Please cancel your booking 24 hours before the start of most tours and activities to receive a full refund.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 export default {};
 </script>
-<style lang="scss">
+<style lang="css">
+/* INTRO */
 .intro {
   min-height: calc(100vh - 106px);
   /* max-height: 750px; */
@@ -27,7 +65,6 @@ export default {};
   justify-content: center;
   align-items: center;
 }
-
 .intro__inner {
   height: 252px;
   width: 820px;
@@ -46,5 +83,30 @@ export default {};
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* FEATURES */
+.feature{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.feature__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.feature__item{
+  max-width: 300px;
+}
+.feature__item_title {
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 7px;
+}
+.feature__item_text {
+  text-align: justify;
+  line-height: 1.5;
 }
 </style>

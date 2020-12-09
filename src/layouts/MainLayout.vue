@@ -82,21 +82,18 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="css">
 .header {
   padding-left: 15px;
   padding-right: 15px;
 }
-.container {
-  width: 88%;
-  max-width: 1440px;
-  margin: 0 auto;
-}
+
 .header__inner {
   display: flex;
   justify-content: space-between;
   padding: 35px 0;
   align-items: center;
+  flex-wrap: wrap;
 }
 /* .header__logo{
   padding-top: 2px ;
@@ -117,7 +114,7 @@ export default {
   padding: 5px 0;
 }
 .nav__item{
-  // margin-right: 30px;
+  /* margin-right: 30px; */
   border-bottom: solid 2px transparent;
   transition: 0.2s linear;
   padding: 5px 0;
