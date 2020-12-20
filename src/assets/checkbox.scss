@@ -24,8 +24,13 @@
   }
 
   &__input input[type="checkbox"]:checked + .checkbox__control {
-    background: #FF5134;
-    border-color: #FF5134;
+    background: $primary;
+    border-color: $primary;
+  }
+
+  &__input_outline input[type="checkbox"]:checked + .checkbox__control {
+    background: $white;
+    border-color: $primary;
   }
 
   &__input input[type="checkbox"]:checked + .checkbox__control svg {
