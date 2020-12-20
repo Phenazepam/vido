@@ -1,0 +1,24 @@
+
+@import './auth.scss';
+/* @import './gilroy/stylesheet.css'; */
+
+
+*, 
+*:before,
+*:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Gilroy';
+  font-size: 1rem;
+}
+.container {
+  width: 88%;
+  max-width: 1140px;
+  margin: 0 auto;                                           
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}

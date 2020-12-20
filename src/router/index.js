@@ -10,6 +10,14 @@ const routes = [
     
   },
   {
+    path: '/catalog',
+    name: 'catalog',
+    meta:{
+      layout: 'main'
+    },
+    component: () => import(/* webpackChunkName: "catalog" */ '@/views/Catalog')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
