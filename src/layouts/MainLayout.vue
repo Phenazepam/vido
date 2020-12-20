@@ -1,87 +1,96 @@
 <template>
   <div>
-  <!--   <header class="header">
-      <div class="container">
-
-        <div class="header__inner">
-
-          <div class="header__logo">
-            <img src="../../public/imgs/Logo.png" alt="vidodo" />
-          </div>
-
-          <div class="header__island">
-            <img
-              src="../../public/imgs/lanzarote_icon.png"
-              class="island_icon"
-              alt=""
-            />
-            <div class="island_name">Lanzarote</div>
-          </div>
-
-          <vi-select
-            class="languageSelector nav__item"
-            v-model="selectedLanguage"
-            :items="languageOptions"
-            :active="selectedLanguage"
-          />
-
-          <vi-select
-            class="currencySelector nav__item"
-            v-model="selectedCurrency"
-            :items="currencyOptions"
-            :active="selectedCurrency"
-          /> 
-                  
-          <div class="nav__item">
-            <div class="nav__item-icon">
-              <img src="../../public/imgs/catalog_icon.png" alt="">
-            </div>
-            <a href="#" class="header__catalog header__link">Каталог</a>
-          </div>
-
-          <div class="nav__item">
-            <div class="nav__item-icon">
-              <img src="../../public/imgs/help_icon.png" alt="">
-            </div>
-            <a href="#" class="header__help header__link">Помощь</a>
-          </div>
-
-          <div class="nav__item">
-            <div class="nav__item-icon">
-              <img src="../../public/imgs/favourite_icon.png" alt="">
-            </div>
-            <a href="#" class="header__favourite header__link">Избранное</a>
-          </div>
-
-          <div class="nav__item">
-            <div class="nav__item-icon">
-              <img src="../../public/imgs/basket_icon.png" alt="">
-            </div>
-            <a href="#" class="header__basket header__link">Корзина</a>
-          </div>
-
-          <div class="nav__item">
-            <a href="#" class="header__account header__link">Личный кабинет</a>
-          </div>
-
-        </div>
-
+    <header class="header">
+      <div class="header__logo">
+        <img aria-hidden="true" src="../../public/imgs/Logo.png" alt="vidodo"/>
       </div>
 
-    </header> -->
-    <Header/>
-    <router-view />
+      <div class="header__control">
+        <div class="header__control-item">
+          <img src="../../public/imgs/lanzarote_icon.png" />
+          Lanzarote
+        </div>
+        <div class="header__control-item">
+          РУС
+        </div>
+        <div class="header__control-item">
+          EUR €
+        </div>
+      </div>
+
+      <div class="header__links">
+        <div class="header__links-item">
+          <icon 
+            name="icon icon_catalog" 
+          />
+          Каталог
+        </div>
+        <div class="header__links-item">
+          <icon 
+            name="icon icon_help" 
+          />
+          Помощь
+        </div>
+        <div class="header__links-item">
+          <icon 
+            name="icon icon_favorites" 
+          />
+          Избранное
+        </div>
+        <div class="header__links-item">
+          <icon 
+            name="icon icon_basket" 
+          />
+          Корзина
+        </div>
+      </div>
+
+      <div class="header__action" @click="auth.state = true">
+        <btn
+          class="btn_primary btn_singin"
+          
+        >
+          Sing in
+        </btn>
+      </div>
+
+    </header>
+
+    <auth 
+      :stateAuth="auth.state"
+      @stateAuth="controlStateAuth"
+    />
+
+    <section class="main">
+      <router-view />
+    </section>
   </div>
 </template>
 <script>
-import viSelect from "@/components/vi-select"
-import Header from "@/components/Header"
+import '@/assets/header.scss'
+
+import Auth from '@/components/Auth'
+import viSelect from '@/components/vi-select'
+import Btn from '@/components/Btn'
+import Icon from '@/components/Icon'
 
 export default {
   name: "main-layout",
+  data: () => ({
+    auth: {
+      state: false 
+    }
+  }),
+  methods: {
+    controlStateAuth (state) {
+      this.auth.state = state
+    }
+  },
   components: {
+    Auth,
     viSelect,
-    Header
+    Btn,
+    Icon    
   },
 };
 </script>

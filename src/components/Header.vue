@@ -11,34 +11,46 @@
         Lanzarote
       </div>
       <div class="header__control-item">
-        Русский
+        РУС
       </div>
       <div class="header__control-item">
-        EUR
+        EUR €
       </div>
     </div>
 
     <div class="header__links">
       <div class="header__links-item">
+        <icon 
+          name="icon icon_catalog" 
+        />
         Каталог
       </div>
       <div class="header__links-item">
+        <icon 
+          name="icon icon_help" 
+        />
         Помощь
       </div>
       <div class="header__links-item">
+        <icon 
+          name="icon icon_favorites" 
+        />
         Избранное
       </div>
       <div class="header__links-item">
+        <icon 
+          name="icon icon_basket" 
+        />
         Корзина
       </div>
     </div>
 
     <div class="header__action">
-        <btn
-          class="btn_primary btn_singin"
-        >
-          Sing in
-        </btn>
+      <btn
+        class="btn_primary btn_singin"
+      >
+        Sing in
+      </btn>
     </div>
 
   </header>
@@ -46,12 +58,15 @@
 
 <script>
 import '@/assets/header.scss'
+
 import Btn from './Btn'
+import Icon from './Icon'
 
 export default {
   name: 'Header',
   components: {
-    Btn
+    Btn,
+    Icon
   }
 }
 </script>
