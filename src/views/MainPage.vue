@@ -1,5 +1,11 @@
 <template>
   <div id="MainPage">
+
+    <auth 
+      :stateAuth="auth.state"
+      @stateAuth="controlStateAuth"
+    />
+
     <!-- INTRO -->
     <div class="intro">
       <div class="intro__inner">
@@ -51,7 +57,27 @@
   </div>
 </template>
 <script>
-export default {};
+import Registration from '@/components/Registration'
+import Auth from '@/components/Auth'
+
+
+export default {
+  name: 'MainPage',
+  data: () => ({
+    auth: {
+      state: true 
+    }
+  }),
+  methods: {
+    controlStateAuth (state) {
+      this.auth.state = state
+    }
+  },
+  components: {
+    Registration,
+    Auth
+  }
+};
 </script>
 <style lang="css">
 /* INTRO */

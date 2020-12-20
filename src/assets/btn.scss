@@ -1,0 +1,46 @@
+.btn {
+  display: inline-block;
+  appearance: none;
+  border: none;
+  border-radius: 5px; 
+  font-size: 14px;
+  font-weight: 500;
+  transition: .2s ease;
+  color: $white;
+
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    transition: .2s ease;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+
+  &_primary {
+    background: $light-green-gradient;
+  }
+
+  &_singin {
+    width: 100px;
+    height: 35px;
+  }
+
+  &_secondary {
+    background: $light-orange-gradient;
+    border-radius: 8px;
+  }
+  
+  &_auth {
+    font-size: 18px;
+    border-radius: 12px;
+    width: 100%;
+    height: 50px;
+  }
+
+}
