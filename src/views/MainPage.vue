@@ -389,7 +389,7 @@ export default {
   name: "MainPage",
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 /* Tags */
 .tags{
   
@@ -642,8 +642,26 @@ export default {
   align-items: center;
   margin: 0 5px;
 }
+
 .intro__action-item {
   margin-left: 7px;
+  display: inline-block;
+  appearance: none;
+  border: none;
+  border-radius: 5px; 
+  padding: 11px 26px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: .2s ease;
+  color: $white;
+}
+.intro__action-item:hover{
+  opacity: 0.8;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.intro__action-item:first-child{
+  padding: 8.5px 26px;
 }
 
 /* FEATURES */
