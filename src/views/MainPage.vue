@@ -58,7 +58,12 @@
     </div>
 
     <!-- Adventures -->
-    <div class="adventures">
+
+    <vi-card-carousel
+      :carousel_title = carouselTitle
+      :carousel_data = cards
+    />
+    <!-- <div class="adventures">
       <div class="container">
         <div class="adventures__title">Popular adventures</div>
         <div class="adventures__slider slider">
@@ -67,7 +72,7 @@
             v-for="card in cards"
             :key="card.id"
             :card_data = card
-          />
+          /> -->
           <!-- <div class="slider__item card">
             <div class="card__picture">
               <img
@@ -288,9 +293,9 @@
               </div>
             </div>
           </div> -->
-        </div>
+     <!--    </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Advertisement -->
     <div class="adv">
@@ -390,17 +395,18 @@
 <script>
 import Btn from "../components/Btn.vue";
 import ViCardVertical from '../components/vi-card-vertical.vue';
+import ViCardCarousel from '../components/vi-card-carousel.vue'
 export default {
   name: "MainPage",
   components: { 
-    Btn, ViCardVertical
+    Btn, ViCardVertical, ViCardCarousel
   },
   data(){
     return{
       cards:[
         {
           id: 1,
-          title: 'Adult-only sailing trip to Papagayo with lunch',
+          title: '1 Adult-only sailing trip to Papagayo with lunch',
           description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
           type: 'Outdoor Classes',
           isLiked: false,
@@ -411,7 +417,7 @@ export default {
         },
         {
           id: 2,
-          title: 'Adult-only sailing trip to Papagayo with lunch',
+          title: '2 Adult-only sailing trip to Papagayo with lunch',
           description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
           type: 'Outdoor Classes',
           isLiked: false,
@@ -422,7 +428,7 @@ export default {
         },
         {
           id: 3,
-          title: 'Adult-only sailing trip to Papagayo with lunch',
+          title: '3 Adult-only sailing trip to Papagayo with lunch',
           description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
           type: 'Trip',
           isLiked: false,
@@ -433,7 +439,40 @@ export default {
         },
         {
           id: 4,
-          title: 'Adult-only sailing trip to Papagayo with lunch',
+          title: '4 Adult-only sailing trip to Papagayo with lunch',
+          description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+          type: 'Outdoor Classes',
+          isLiked: false,
+          ratingVidodo: '1.2',
+          ratingGeneral: '2.5',
+          duration: '40',
+          price: '27.00'
+        },
+        {
+          id: 5,
+          title: '5 Adult-only sailing trip to Papagayo with lunch',
+          description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+          type: 'Outdoor Classes',
+          isLiked: false,
+          ratingVidodo: '1.2',
+          ratingGeneral: '2.5',
+          duration: '40',
+          price: '27.00'
+        },
+        {
+          id: 6,
+          title: '6 Adult-only sailing trip to Papagayo with lunch',
+          description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+          type: 'Outdoor Classes',
+          isLiked: false,
+          ratingVidodo: '1.2',
+          ratingGeneral: '2.5',
+          duration: '40',
+          price: '27.00'
+        },
+        {
+          id: 7,
+          title: '7 Adult-only sailing trip to Papagayo with lunch',
           description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
           type: 'Outdoor Classes',
           isLiked: false,
@@ -442,7 +481,8 @@ export default {
           duration: '40',
           price: '27.00'
         }
-      ]
+      ],
+      carouselTitle: 'Popular Adventures',
     }
   }
 };
@@ -482,7 +522,7 @@ export default {
 /* Advertisement */
 .adv {
   min-height: 454px;
-  margin-top: 454px;
+  margin-top: 10px;
   background: no-repeat url(../../public/imgs/MainPage/Advertisement/bg.png);
   background-size: cover;
   background-position: center;
@@ -527,7 +567,7 @@ export default {
 }
 
 /* Adventures */
-.adventures {
+/* .adventures {
   margin-top: 70px;
   &__title {
     font-size: 36px;
@@ -547,8 +587,11 @@ export default {
 .slider {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   &__item {
+    flex-basis: 25%;
     width: 262px;
+    
   }
 }
 .card {
@@ -561,7 +604,7 @@ export default {
     left: 0;
     top: 0;
     /* background-image: url(../../public/imgs/MainPage/PopularAdventures/item_picture_01.png);
-    height: 144px; */
+    height: 144px; 
     &-heart {
       position: absolute;
       top: 16px;
@@ -671,7 +714,7 @@ export default {
       }
     }
   }
-}
+} */
 /* INTRO */
 .intro {
   min-height: calc(100vh - 106px);

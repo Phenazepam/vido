@@ -1,6 +1,6 @@
 <template>
   <div class="vi-card-vertical">
-    <div class="slider__item card">
+    <div class="card">
       <div class="card__picture">
         <img
           src="@/../public/imgs/MainPage/PopularAdventures/item_picture_01.png"
@@ -74,7 +74,7 @@ export default {
   .card {
   width: 262px;
   position: relative;
-
+  margin-right: 28px;
   &__picture {
     position: absolute;
     z-index: 0;
