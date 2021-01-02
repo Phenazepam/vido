@@ -62,7 +62,13 @@
       <div class="container">
         <div class="adventures__title">Popular adventures</div>
         <div class="adventures__slider slider">
-          <div class="slider__item card">
+          <vi-card-vertical
+            class="slider__item"
+            v-for="card in cards"
+            :key="card.id"
+            :card_data = card
+          />
+          <!-- <div class="slider__item card">
             <div class="card__picture">
               <img
                 src="@/../public/imgs/MainPage/PopularAdventures/item_picture_01.png"
@@ -70,7 +76,7 @@
               />
               <div class="card__picture-heart">
                 <img
-                  src="@/../public/imgs/MainPage/PopularAdventures/heart.png"
+                  src="@/../public/imgs/MainPage/PopularAdventures/heart_orange.png"
                   alt=""
                 />
               </div>
@@ -125,7 +131,7 @@
               />
               <div class="card__picture-heart">
                 <img
-                  src="@/../public/imgs/MainPage/PopularAdventures/heart.png"
+                  src="@/../public/imgs/MainPage/PopularAdventures/heart_orange.png"
                   alt=""
                 />
               </div>
@@ -180,7 +186,7 @@
               />
               <div class="card__picture-heart">
                 <img
-                  src="@/../public/imgs/MainPage/PopularAdventures/heart.png"
+                  src="@/../public/imgs/MainPage/PopularAdventures/heart_orange.png"
                   alt=""
                 />
               </div>
@@ -235,7 +241,7 @@
               />
               <div class="card__picture-heart">
                 <img
-                  src="@/../public/imgs/MainPage/PopularAdventures/heart.png"
+                  src="@/../public/imgs/MainPage/PopularAdventures/heart_orange.png"
                   alt=""
                 />
               </div>
@@ -281,7 +287,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -383,10 +389,62 @@
 </template>
 <script>
 import Btn from "../components/Btn.vue";
-
+import ViCardVertical from '../components/vi-card-vertical.vue';
 export default {
-  components: { Btn },
   name: "MainPage",
+  components: { 
+    Btn, ViCardVertical
+  },
+  data(){
+    return{
+      cards:[
+        {
+          id: 1,
+          title: 'Adult-only sailing trip to Papagayo with lunch',
+          description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+          type: 'Outdoor Classes',
+          isLiked: false,
+          ratingVidodo: '4.2',
+          ratingGeneral: '4.5',
+          duration: '20',
+          price: '24.00'
+        },
+        {
+          id: 2,
+          title: 'Adult-only sailing trip to Papagayo with lunch',
+          description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+          type: 'Outdoor Classes',
+          isLiked: false,
+          ratingVidodo: '4.2',
+          ratingGeneral: '4.5',
+          duration: '20',
+          price: '25.00'
+        },
+        {
+          id: 3,
+          title: 'Adult-only sailing trip to Papagayo with lunch',
+          description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+          type: 'Trip',
+          isLiked: false,
+          ratingVidodo: '4.2',
+          ratingGeneral: '4.5',
+          duration: '90',
+          price: '100.00'
+        },
+        {
+          id: 4,
+          title: 'Adult-only sailing trip to Papagayo with lunch',
+          description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+          type: 'Outdoor Classes',
+          isLiked: false,
+          ratingVidodo: '1.2',
+          ratingGeneral: '2.5',
+          duration: '40',
+          price: '27.00'
+        }
+      ]
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -513,9 +571,12 @@ export default {
       padding: 5px 5px 0px 5px;
       border-radius: 50%;
       transition: 0.2s;
+      filter: contrast(0.18);
+      
     }
     &-heart:hover {
-      background-color: $primary;
+      filter: contrast(1);
+      //background-color: $primary;
       // border: 1px solid $primary;
     }
   }
