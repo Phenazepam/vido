@@ -131,7 +131,7 @@ export default {
       color: white;
       border-radius: 4px;
       font-size: 12px;
-
+      margin-bottom: 0;
       text-overflow: clip; 
       max-width: 107px;
       white-space: nowrap; 
