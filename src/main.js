@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import '@/assets/main.css'
+import axios from 'axios'
+import {Server} from 'miragejs'
+import './mirageServer.js'
 
 import '@/assets/styles.scss'
 

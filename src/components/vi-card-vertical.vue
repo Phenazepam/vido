@@ -3,8 +3,10 @@
     <div class="card">
       <div class="card__picture">
         <img
-          src="@/../public/imgs/MainPage/PopularAdventures/item_picture_01.png"
-          alt=""
+          :src="require(`@/../public/imgs/MainPage/PopularAdventures/${card_data.img}`)"
+          width="262px"
+          height="144px"
+          alt="img"
         />
         <div class="card__picture-heart">
           <img
@@ -68,6 +70,11 @@ export default {
       }
     }
   },
+  methods:{
+    getImg(img){
+      return img;
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -80,6 +87,7 @@ export default {
     z-index: 0;
     left: 0;
     top: 0;
+
     /* background-image: url(../../public/imgs/MainPage/PopularAdventures/item_picture_01.png);
     height: 144px; */
     &-heart {
@@ -101,6 +109,7 @@ export default {
     }
   }
   &__about {
+    max-width: 262px;
     position: absolute;
     left: 0;
     top: 132px;
@@ -115,12 +124,18 @@ export default {
     margin-top: 12px;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     &-type {
       padding: 3px 8px;
       background-color: #4f9cf8;
       color: white;
       border-radius: 4px;
       font-size: 12px;
+
+      text-overflow: clip; 
+      max-width: 107px;
+      white-space: nowrap; 
+      overflow:hidden; 
     }
     &-rating {
       display: flex;
@@ -161,11 +176,25 @@ export default {
     font-weight: 700;
     line-height: 1.5;
     margin-top: 8px;
+    max-width: 230px;
+
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
   }
   &__description {
+    max-width: 230px;
     font-size: 14px;
     line-height: 1.5;
     margin-top: 4px;
+
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
   }
   &__footer {
     display: flex;
