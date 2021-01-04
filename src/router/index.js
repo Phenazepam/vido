@@ -20,6 +20,14 @@ const routes = [
       layout: 'main'
     },
     component: () => import(/* webpackChunkName: "catalog" */ '@/views/Catalog')
+  },
+  {
+    path: '/event',
+    name: 'event',
+    meta:{
+      layout: 'main'
+    },
+    component: () => import(/* webpackChunkName: "catalog" */ '@/views/Event')
   }
 ]
 
