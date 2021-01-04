@@ -1,7 +1,7 @@
 <template>
   <div class="vi-card-carousel">
     <div class="carousel">
-      <div class="container">
+      <!-- <div class="container"> -->
         <div class="carousel__controls">
           <div class="carousel__controls-title">{{ carousel_title }}</div>
           <div class="carousel__controls-buttons">
@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 

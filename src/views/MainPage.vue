@@ -58,11 +58,12 @@
     </div>
 
     <!-- Adventures -->
-
-    <vi-card-carousel
-      :carousel_title = carouselTitle
-      :carousel_data = cards
-    />
+    <div class="container">
+      <vi-card-carousel
+        :carousel_title = carouselTitle
+        :carousel_data = cards
+      />
+    </div>
     <!-- <div class="adventures">
       <div class="container">
         <div class="adventures__title">Popular adventures</div>

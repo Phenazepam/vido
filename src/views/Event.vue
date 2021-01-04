@@ -362,7 +362,8 @@
         <div class="event__sights-title">Sights</div>
         <div class="event__sights-text">
           <ul>
-            <li>Get panoramic views of Lanzarote's north coast as you cross La
+            <li>
+              Get panoramic views of Lanzarote's north coast as you cross La
               Graciosa
             </li>
             <li>Admire white sand beaches and clear waters</li>
@@ -372,17 +373,11 @@
       </div>
       <div class="event__fulldesc">
         <div class="event__fulldesc-title">Full description</div>
-        <div 
-          class="event__fulldesc-text" 
-          v-if="showShort"
-        >
+        <div class="event__fulldesc-text" v-if="showShort">
           {{ fullDesc | limitTo }}
         </div>
-        <div 
-          class="event__fulldesc-text" 
-          v-else
-        >
-        {{ fullDesc }}
+        <div class="event__fulldesc-text" v-else>
+          {{ fullDesc }}
         </div>
         <div class="event__fulldesc-control" @click="showShort = !showShort">
           <svg
@@ -403,9 +398,7 @@
         </div>
       </div>
       <div class="event__included">
-        <div class="event__included-title">
-          What's included
-        </div>
+        <div class="event__included-title">What's included</div>
         <div class="event__included-text">
           <ul>
             <li>Visiting volcanoes</li>
@@ -417,9 +410,7 @@
         </div>
       </div>
       <div class="event__notincluded">
-        <div class="event__notincluded-title">
-          What's not included
-        </div>
+        <div class="event__notincluded-title">What's not included</div>
         <div class="event__notincluded-text">
           <ul>
             <li>Camel ride: 6 € for 25 minutes.</li>
@@ -427,27 +418,85 @@
         </div>
       </div>
       <div class="event__importantInfo">
-        <div class="event__importantInfo-title">
-          Important information
-        </div>
+        <div class="event__importantInfo-title">Important information</div>
         <div class="event__importantInfo-text">
           <ul>
-            <li>Sail to La Graciosa Island and enjoy the quiet beaches 
-              on a 6-hour journey. Swim, kayak and relax in the blue waters 
-              of the natural park and marine reserve. Benefit from complimentary 
-              drinks and a delicious lunch.
+            <li>
+              Sail to La Graciosa Island and enjoy the quiet beaches on a 6-hour
+              journey. Swim, kayak and relax in the blue waters of the natural
+              park and marine reserve. Benefit from complimentary drinks and a
+              delicious lunch.
             </li>
           </ul>
         </div>
       </div>
+      <div class="event__covidInfo">
+        <div class="event__covidInfo-title">Important information</div>
+        <div class="event__covidInfo-text">
+          <div class="event__covidInfo-text-measures">
+            Принимаются меры по обеспечению безопасности:
+            <ul>
+              <li>
+                Regular cleaning is carried out at all points of interaction
+                with customers
+              </li>
+              <li>All participants are required to wear protective masks</li>
+              <li>
+                Regular cleaning is carried out at all points of interaction
+                with customers
+              </li>
+              <li>All participants are required to wear protective masks</li>
+              <li>
+                Regular cleaning is carried out at all points of interaction
+                with customers
+              </li>
+            </ul>
+          </div>
+          <div class="event__covidInfo-text-demands">
+            Требования к участникам
+            <ul>
+              <li>
+                Regular cleaning is carried out at all points of interaction
+                with customers
+              </li>
+              <li>All participants are required to wear protective masks</li>
+              <li>
+                Regular cleaning is carried out at all points of interaction
+                with customers
+              </li>
+              <li>All participants are required to wear protective masks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="event__meetingPoint">
+        <div class="event__meetingPoint-title">
+          Meeting point
+        </div>
+        <div class="event__meetingPoint-text">
+          Пожалуйста, обратитесь в кассу Lineas Romero с подтверждением,
+          чтобы забрать посадочный талон за 15 минут до отправления.
+        </div>
+      </div>
+      <vi-card-carousel
+      :carousel_title = carouselTitle
+      :carousel_data = cards
+    />
     </div>
   </div>
 </template>
 <script>
+import ViCardCarousel from '@/components/vi-card-carousel.vue'
+import axios from 'axios'
 export default {
   name: "Event",
+  components:{
+    ViCardCarousel,
+  },
   data() {
     return {
+      cards:[],
+      carouselTitle: 'You may also like',
       mainPicture: "photo_main.png",
       pictures: [
         "other 1.jpg",
@@ -476,6 +525,10 @@ export default {
       () => this.nextMainPhoto(this.pictures[0]),
       20000
     );
+    axios.get('/api/cards')
+    .then(Response => {
+      this.cards = Response.data
+    });
   },
   methods: {
     changeMainPhoto(img) {
@@ -756,7 +809,7 @@ export default {
       font-size: 24px;
       line-height: 29px;
     }
-    &-text { 
+    &-text {
       margin-top: 17px;
       ul {
         list-style-position: inside;
@@ -780,7 +833,7 @@ export default {
   &__fulldesc {
     margin-top: 40px;
     position: relative;
-    transition: .2s ease;
+    transition: 0.2s ease;
     &-title {
       font-weight: 700;
       font-size: 24px;
@@ -807,14 +860,14 @@ export default {
       cursor: pointer;
     }
   }
-  &__included{
+  &__included {
     margin-top: 40px;
-    &-title{
+    &-title {
       font-weight: 700;
       font-size: 24px;
       line-height: 29px;
     }
-    &-text{
+    &-text {
       margin-top: 17px;
       ul {
         list-style-position: inside;
@@ -837,14 +890,14 @@ export default {
       }
     }
   }
-  &__notincluded{
+  &__notincluded {
     margin-top: 40px;
-    &-title{
+    &-title {
       font-weight: 700;
       font-size: 24px;
       line-height: 29px;
     }
-    &-text{
+    &-text {
       margin-top: 17px;
       ul {
         list-style-position: inside;
@@ -867,14 +920,14 @@ export default {
       }
     }
   }
-  &__importantInfo{
+  &__importantInfo {
     margin-top: 40px;
-    &-title{
+    &-title {
       font-weight: 700;
       font-size: 24px;
       line-height: 29px;
     }
-    &-text{
+    &-text {
       margin-top: 17px;
       ul {
         list-style-position: inside;
@@ -897,6 +950,79 @@ export default {
       }
     }
   }
+  &__covidInfo {
+    margin-top: 40px;
+    &-title {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 29px;
+    }
+    &-text {
+      margin-top: 17px;
 
+      &-measures {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 32px;
+        ul {
+          list-style-position: inside;
+        }
+        li {
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 26px;
+          list-style-type: none;
+          padding: 6px 0;
+        }
+        li:before {
+          width: 10px;
+          color: $secondary;
+          content: "•";
+          font-weight: 700;
+          font-size: 28px;
+          padding-right: 12px;
+          vertical-align: middle;
+        }
+      }
+      &-demands {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 32px;
+        ul {
+          list-style-position: inside;
+        }
+        li {
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 26px;
+          list-style-type: none;
+          padding: 6px 0;
+        }
+        li:before {
+          width: 10px;
+          color: $primary;
+          content: "•";
+          font-weight: 700;
+          font-size: 28px;
+          padding-right: 12px;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  &__meetingPoint{
+    margin-top: 40px;
+    &-title {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 29px;
+      }
+    &-text {
+      margin-top: 17px;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 32px;
+    }
+  }
 }
 </style>

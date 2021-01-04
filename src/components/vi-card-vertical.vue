@@ -1,7 +1,7 @@
 <template>
   <div class="vi-card-vertical">
     <div class="card">
-      <div class="card__picture">
+      <router-link to="/event" tag="div" class="card__picture">
         <img
           :src="require(`@/../public/imgs/MainPage/PopularAdventures/${card_data.img}`)"
           width="262px"
@@ -14,7 +14,7 @@
             alt=""
           />
         </div>
-      </div>
+      </router-link>
       <div class="card__about">
         <div class="card__info">
           <div class="card__info-type">{{card_data.type}}</div>
@@ -35,9 +35,9 @@
             </div>
           </div>
         </div>
-        <div class="card__title">
+        <router-link to="/event" tag="div" class="card__title">
           {{card_data.title}}
-        </div>
+        </router-link>
         <div class="card__description">
           {{card_data.description}}
         </div>
@@ -83,11 +83,14 @@ export default {
   position: relative;
   margin-right: 28px;
   &__picture {
+    cursor: pointer;
     position: absolute;
     z-index: 0;
     left: 0;
     top: 0;
-
+    img{
+      border-radius: 12px;
+    }
     /* background-image: url(../../public/imgs/MainPage/PopularAdventures/item_picture_01.png);
     height: 144px; */
     &-heart {
@@ -133,7 +136,7 @@ export default {
       font-size: 12px;
       margin-bottom: 0;
       text-overflow: clip; 
-      max-width: 107px;
+      max-width: 103px;
       white-space: nowrap; 
       overflow:hidden; 
     }
@@ -172,6 +175,7 @@ export default {
     }
   }
   &__title {
+    cursor: pointer;
     font-size: 18px;
     font-weight: 700;
     line-height: 1.5;
