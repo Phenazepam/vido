@@ -93,10 +93,10 @@
                 </svg>
               </div>
             </div>
-            <img
-              :src="require(`@/../public/imgs/Event/${mainPicture}`)"
-              alt=""
-            />
+              <img
+                :src="require(`@/../public/imgs/Event/${mainPicture}`)"
+                alt=""
+              />
           </div>
           <div class="event__photo-others">
             <div

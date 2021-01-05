@@ -71,9 +71,13 @@
       @stateAuth="controlStateAuth"
     />
 
+
     <section class="main">
-      <router-view />
+      <transition name="component-fade" mode="out-in">
+        <router-view />
+      </transition>
     </section>
+
 
     <footer class="footer">
       <div class="container">
