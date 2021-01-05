@@ -35,24 +35,35 @@
           />
           Каталог
         </router-link>
+
         <div class="header__links-item">
           <icon 
             name="icon icon_help" 
           />
           Помощь
         </div>
-        <div class="header__links-item">
+
+        <router-link 
+          to="/favorites"
+          tag="div"
+          class="header__links-item"
+        >
           <icon 
             name="icon icon_favorites" 
           />
           Избранное
-        </div>
-        <div class="header__links-item">
+        </router-link>
+
+        <router-link 
+          tag="div"
+          to="/basket"
+          class="header__links-item"
+        >
           <icon 
             name="icon icon_basket" 
           />
           Корзина
-        </div>
+        </router-link>
       </div>
 
       <div class="header__action" @click="auth.state = true">

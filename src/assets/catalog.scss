@@ -118,25 +118,14 @@
       color: $text-primary;
     }
 
-    &__checkbox {
+    &__control {
       margin-top: 12px;
     }
 
     &__filter {
-      font-size: 12px;
-      margin-top: 8px;
-      font-weight: 500;
-      margin-right: 8px;
-      padding: 8px 10px;
-      border: 1px solid $gray;
-      border-radius: 8px;
-      color: $text-primary;
-      transition: .3s;
-      cursor: pointer;
+      margin: 8px 8px 0 0;
     }
-    &__filter:hover{
-      background: $gray;
-    }
+
   }
 
 }

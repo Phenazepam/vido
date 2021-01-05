@@ -73,7 +73,7 @@ new Server({
             id: 6,
             title: "6 Adult-only sailing trip to Papagayo with lunch",
             description:
-              "Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...",
+              "Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...",
             type: "Outdoor Classes",
             img: "item_picture_01.png",
             isLiked: false,

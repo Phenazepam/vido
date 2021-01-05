@@ -45,47 +45,35 @@
           </div>
           <div class="sidebar__item">
             <h3 class="sidebar__title">Time</h3>
-            <checkbox
-              class="sidebar__checkbox checkbox__input_outline_"
-              title="8:00 - 12:00 hr"
-            />
-            <checkbox
-              class="sidebar__checkbox checkbox__input_outline_"
-              title="12:00 - 17:00 hr"
-            />
-            <checkbox
-              class="sidebar__checkbox checkbox__input_outline_"
-              title="17:00 - 23:59 hr"
-            />
-            <checkbox
-              class="sidebar__checkbox checkbox__input_outline_"
-              title="Period"
-            />
+
+            <div 
+              class="sidebar__control"
+              v-for="el in sidebarFilters.time"
+              :key="el"
+            >
+              <checkbox type="inverse">
+                <template v-slot:title>
+                  {{ el }}
+                </template>
+              </checkbox>
+            </div>
           </div>
+
           <div class="sidebar__item">
             <h3 class="sidebar__title">Travel Services</h3>
-            <div>
-              <checkbox
-                class="sidebar__checkbox checkbox__input_outline_"
-                title="Transportation"
-              />
-              <checkbox
-                class="sidebar__checkbox checkbox__input_outline_"
-                title="Transfer"
-              />
-              <checkbox
-                class="sidebar__checkbox checkbox__input_outline_"
-                title="Rentals"
-              />
-              <checkbox
-                class="sidebar__checkbox checkbox__input_outline_"
-                title="Photography"
-              />
-              <checkbox
-                class="sidebar__checkbox checkbox__input_outline_"
-                title="Other"
-              />
+
+            <div 
+              class="sidebar__control"
+              v-for="el in sidebarFilters.travel"
+              :key="el"
+            >
+              <checkbox type="inverse">
+                <template v-slot:title>
+                  {{ el }}
+                </template>
+              </checkbox>
             </div>
+
           </div>
 
           <div class="sidebar__item">
@@ -93,21 +81,18 @@
               Duration
             </div>
             <div class="row">
-              <div class="sidebar__filter">
-                All day
+              
+              <div 
+                v-for="el in sidebarFilters.duration"
+                :key="el"
+                class="sidebar__filter"
+              >
+                <checkbox-tag>
+                  {{ el }}
+                </checkbox-tag>
               </div>
-              <div class="sidebar__filter">
-                1-3 hours
-              </div>
-              <div class="sidebar__filter">
-                3-6 hours
-              </div>
-              <div class="sidebar__filter">
-                Up to 1 hour
-              </div>
-              <div class="sidebar__filter">
-                Several days
-              </div>
+            
+          
             </div>
           </div>
 
@@ -116,18 +101,17 @@
               Languages
             </div>
             <div class="row">
-              <div class="sidebar__filter">
-                English
+
+              <div 
+                v-for="el in sidebarFilters.languages"
+                :key="el"
+                class="sidebar__filter"
+              >
+                <checkbox-tag>
+                  {{ el }}
+                </checkbox-tag>
               </div>
-              <div class="sidebar__filter">
-                Spanish
-              </div>
-              <div class="sidebar__filter">
-                German
-              </div>
-              <div class="sidebar__filter">
-                French
-              </div>
+
             </div>
           </div>
 
@@ -135,32 +119,20 @@
             <div class="sidebar__title">
               Other filters
             </div>
-            <div>
-              <checkbox
-                class="sidebar__checkbox"
-                title="Private Tours"
-              />
-              <checkbox
-                class="sidebar__checkbox"
-                title="Kid friendly"
-              />
-              <checkbox
-                class="sidebar__checkbox"
-                title="Deals & Discounts"
-              />
-              <checkbox
-                class="sidebar__checkbox"
-                title="Free Cancellation"
-              />
-              <checkbox
-                class="sidebar__checkbox"
-                title="Pickup possible"
-              />
-              <checkbox
-                class="sidebar__checkbox"
-                title="Wheelchair accessible"
-              />
+
+            <div 
+              class="sidebar__control"
+              v-for="el in sidebarFilters.other"
+              :key="el"
+            >
+              <checkbox 
+                type="inverse">
+                <template v-slot:title>
+                  {{ el }}
+                </template>
+              </checkbox>
             </div>
+
           </div>
         </div>
 
@@ -185,36 +157,13 @@
 
           <div class="cards">
             
+            <tour-card horizontal
+              v-for="tour in tours"
+              :key="tour.id"
+              :data="tour"
+            >
+            </tour-card>
 
-            <card 
-              class="card--horizonale"
-            />
-            <card 
-              class="card--horizonale"
-            />
-            <card 
-              class="card--horizonale"
-            />
-            <card 
-              class="card--horizonale"
-            />
-            <card 
-              class="card--horizonale"
-            />
-            <card 
-              class="card--horizonale"
-            />
-            <card 
-              class="card--horizonale"
-            />
-            <card 
-              class="card--horizonale"
-            />
-            <card 
-              class="card--horizonale"
-            />
-      
-    
           </div>
         </div>
       </div>
@@ -226,14 +175,68 @@
 <script>
 import '@/assets/catalog.scss'
 
-import Checkbox from '@/components/Checkbox'
+import Checkbox from '@/components/controls/Checkbox'
+import CheckboxTag from '@/components/controls/CheckboxTag'
 import Card from '@/components/Card'
+import TourCard from '@/components/TourCard'
+
+import { mapState } from 'vuex'
+
 
 export default {
   name: 'Catalog',
+  data: () => ({
+    sidebarFilters: {
+      time: [
+        '8:00 - 12:00 hr',
+        '12:00 - 17:00 hr',
+        '17:00 - 23:59 hr',
+        'Period'
+      ],
+      travel: [
+        'Transportation',
+        'Transfer',
+        'Rentals',
+        'Photography',
+        'Other',
+      ],
+      other: [
+        'Private Tours',
+        'Kid friendly',
+        'Deals & Discounts',
+        'Free Cancellation',
+        'Pickup possible',
+        'Wheelchair accessible',
+      ],
+      duration: [
+        'All day',
+        '1-3 hours',
+        '3-6 hours',
+        'Up to 1 hour',
+        'Several days'
+      ],
+      languages: [
+        'English',
+        'Spanish',
+        'German',
+        'French',
+      ]
+    }
+  }),
+  computed: {
+    ...mapState({
+      tours: s => s.tours.tours
+    })
+  },
+  created () {
+    this.$store.dispatch('getTours'),
+    console.log(this.tours)
+  },
   components: {
     Checkbox,
-    Card
+    CheckboxTag,
+    Card,
+    TourCard
   }
 }
 </script>

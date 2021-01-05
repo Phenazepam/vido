@@ -1,5 +1,4 @@
 .checkbox {
-  
   display: flex;
   cursor: pointer;
 
@@ -27,8 +26,8 @@
     background: $primary;
     border-color: $primary;
   }
-
-  &__input_outline input[type="checkbox"]:checked + .checkbox__control {
+  
+  &__input input[type="checkbox"]:checked + .checkbox__control_inverse {
     background: $white;
     border-color: $primary;
   }
@@ -40,8 +39,10 @@
   &__text {
     vertical-align: top;
     padding-left: 8px;
+    width: auto;
   }
   &__text-title {
+    font-weight: 500;
     margin-top: 5px;
     font-size: 14px;
     color: $text-primary;

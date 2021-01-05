@@ -28,7 +28,15 @@ const routes = [
       layout: 'main'
     },
     component: () => import(/* webpackChunkName: "catalog" */ '@/views/Event')
-  }
+  },
+  {
+    path: '/favorites',
+    name: 'favorites',
+    meta:{
+      layout: 'main'
+    },
+    component: () => import(/* webpackChunkName: "favorites" */ '@/views/Favorites')
+  },
 ]
 
 const router = new VueRouter({
