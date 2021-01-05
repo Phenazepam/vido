@@ -690,7 +690,6 @@ export default {
     margin-top: 30px;
     &-main {
       position: relative;
-      transition: 1s;
       img {
         max-width: 72vw;
         width: 970px;
