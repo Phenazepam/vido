@@ -431,7 +431,7 @@
         </div>
       </div>
       <div class="event__covidInfo">
-        <div class="event__covidInfo-title">Important information</div>
+        <div class="event__covidInfo-title">COVID information</div>
         <div class="event__covidInfo-text">
           <div class="event__covidInfo-text-measures">
             Принимаются меры по обеспечению безопасности:
@@ -692,6 +692,7 @@ export default {
       position: relative;
       transition: 1s;
       img {
+        max-width: 72vw;
         width: 970px;
         height: 401px;
         border-radius: 12px;
