@@ -37,6 +37,14 @@ const routes = [
     },
     component: () => import(/* webpackChunkName: "favorites" */ '@/views/Favorites')
   },
+  {
+    path: '/basket',
+    name: 'basket',
+    meta:{
+      layout: 'main'
+    },
+    component: () => import(/* webpackChunkName: "favorites" */ '@/views/Basket')
+  },
 ]
 
 const router = new VueRouter({

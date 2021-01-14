@@ -1,7 +1,5 @@
-
 @import './auth.scss';
 @import './animation.scss';
-/* @import './gilroy/stylesheet.css'; */
 
 
 *, 
@@ -15,7 +13,7 @@
 }
 .container {
   width: 88%;
-  max-width: 1140px;
+  max-width: 1145px;
   margin: 0 auto;                                           
 }
 
@@ -26,4 +24,33 @@
 
 .justify-between {
   justify-content: space-between;
+}
+
+.main {
+  &__header {
+    margin-bottom: 25px;
+  }
+  
+  &__breadcrumbs {
+    font-size: 12px;
+    font-weight: 500;
+    color: $text-secondary;
+    margin-bottom: 4px;
+  }
+
+  &__title {
+    font-size: 36px;
+    font-weight: bold;
+    color: $text-primary;
+  }
+
+  &__info-tip {
+    border-radius: 8px;
+    background-color: #FFF4E1;
+    padding: 17px 24px;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+    font-size: 16px;
+    color: #A48756;
+  }
 }

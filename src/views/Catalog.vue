@@ -37,104 +37,116 @@
 
 
       <div class="catalog__main">
-        <div class="catalog__sidebar sidebar">
-          <div class="sidebar__header">
-            <div class="sidebar__header-title">
-              When are you traveling?
-            </div>
-          </div>
-          <div class="sidebar__item">
-            <h3 class="sidebar__title">Time</h3>
+        <div class="catalog__sidebar">
+          <form>
+            <div class="sidebar">
+              <div class="sidebar__header">
+                <div class="sidebar__header-title">
+                  When are you traveling?
+                </div>
+              </div>
+              <div class="sidebar__item">
+                <h3 class="sidebar__title">Time</h3>
 
-            <div 
-              class="sidebar__control"
-              v-for="el in sidebarFilters.time"
-              :key="el"
-            >
-              <checkbox type="inverse">
-                <template v-slot:title>
-                  {{ el }}
-                </template>
-              </checkbox>
-            </div>
-          </div>
+                <div 
+                  class="sidebar__control"
+                  v-for="el in sidebarFilters.time"
+                  :key="el"
+                >
+                  <checkbox type="inverse">
+                    <template v-slot:title>
+                      {{ el }}
+                    </template>
+                  </checkbox>
+                </div>
+              </div>
 
-          <div class="sidebar__item">
-            <h3 class="sidebar__title">Travel Services</h3>
+              <div class="sidebar__item">
+                <h3 class="sidebar__title">Travel Services</h3>
 
-            <div 
-              class="sidebar__control"
-              v-for="el in sidebarFilters.travel"
-              :key="el"
-            >
-              <checkbox type="inverse">
-                <template v-slot:title>
-                  {{ el }}
-                </template>
-              </checkbox>
-            </div>
+                <div 
+                  class="sidebar__control"
+                  v-for="el in sidebarFilters.travel"
+                  :key="el"
+                >
+                  <checkbox type="inverse">
+                    <template v-slot:title>
+                      {{ el }}
+                    </template>
+                  </checkbox>
+                </div>
 
-          </div>
+              </div>
 
-          <div class="sidebar__item">
-            <div class="sidebar__title">
-              Duration
-            </div>
-            <div class="row">
+              <div class="sidebar__item">
+                <div class="sidebar__title">
+                  Duration
+                </div>
+                <div class="row">
+                  
+                  <div 
+                    v-for="el in sidebarFilters.duration"
+                    :key="el"
+                    class="sidebar__filter"
+                  >
+                    <checkbox-tag>
+                      {{ el }}
+                    </checkbox-tag>
+                  </div>
+                
               
-              <div 
-                v-for="el in sidebarFilters.duration"
-                :key="el"
-                class="sidebar__filter"
-              >
-                <checkbox-tag>
-                  {{ el }}
-                </checkbox-tag>
-              </div>
-            
-          
-            </div>
-          </div>
-
-          <div class="sidebar__item">
-            <div class="sidebar__title">
-              Languages
-            </div>
-            <div class="row">
-
-              <div 
-                v-for="el in sidebarFilters.languages"
-                :key="el"
-                class="sidebar__filter"
-              >
-                <checkbox-tag>
-                  {{ el }}
-                </checkbox-tag>
+                </div>
               </div>
 
-            </div>
-          </div>
+              <div class="sidebar__item">
+                <div class="sidebar__title">
+                  Languages
+                </div>
+                <div class="row">
 
-          <div class="sidebar__item">
-            <div class="sidebar__title">
-              Other filters
-            </div>
+                  <div 
+                    v-for="el in sidebarFilters.languages"
+                    :key="el"
+                    class="sidebar__filter"
+                  >
+                    <checkbox-tag>
+                      {{ el }}
+                    </checkbox-tag>
+                  </div>
 
-            <div 
-              class="sidebar__control"
-              v-for="el in sidebarFilters.other"
-              :key="el"
-            >
-              <checkbox 
-                type="inverse">
-                <template v-slot:title>
-                  {{ el }}
-                </template>
-              </checkbox>
-            </div>
+                </div>
+              </div>
 
-          </div>
+              <div class="sidebar__item">
+                <div class="sidebar__title">
+                  Other filters
+                </div>
+
+                <div 
+                  class="sidebar__control"
+                  v-for="el in sidebarFilters.other"
+                  :key="el"
+                >
+                  <checkbox 
+                    type="inverse">
+                    <template v-slot:title>
+                      {{ el }}
+                    </template>
+                  </checkbox>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="sidebar__reset">
+              <btn reset type="reset">
+                Clear all filters
+              </btn>
+            </div>
+          </form>
         </div>
+
+
 
         <div class="catalog__cards">
 
@@ -177,8 +189,8 @@ import '@/assets/catalog.scss'
 
 import Checkbox from '@/components/controls/Checkbox'
 import CheckboxTag from '@/components/controls/CheckboxTag'
-import Card from '@/components/Card'
 import TourCard from '@/components/TourCard'
+import Btn from '@/components/Btn'
 
 import { mapState } from 'vuex'
 
@@ -228,15 +240,19 @@ export default {
       tours: s => s.tours.tours
     })
   },
+  methods: {
+    filterCatalog () {
+      
+    }
+  },
   created () {
-    this.$store.dispatch('getTours'),
-    console.log(this.tours)
+    this.$store.dispatch('getTours')
   },
   components: {
     Checkbox,
     CheckboxTag,
-    Card,
-    TourCard
+    TourCard,
+    Btn
   }
 }
 </script>

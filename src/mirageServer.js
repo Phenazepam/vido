@@ -96,6 +96,166 @@ new Server({
             price: "27.00",
           },
         ]);
+    }),
+    this.get('api/events', () => {
+      return JSON.stringify([
+        {
+          id: 0,
+          context: {
+            title: '1 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_01.png'
+          },
+          properties: {
+            type: 'Outdoor Classes',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '24.00',
+              new: null
+            },
+            duration: 120,
+            languages: ['English', 'Spanish', 'German'],
+            time: null,
+
+          }
+        },
+        {
+          id: 1,
+          context: {
+            title: '2 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_02.png'
+          },
+          properties: {
+            type: 'Outdoor Classes',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '24.12',
+              new: '15.22'
+            },
+            duration: 120,
+            languages: ['English', 'Spanish', 'German'],
+            time: null,
+
+          }
+        },
+        {
+          id: 2,
+          context: {
+            title: '3 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_03.png'
+          },
+          properties: {
+            type: 'Outdoor Classes',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '24.00',
+              new: null
+            },
+            duration: 120,
+            languages: ['English', 'Spanish', 'German'],
+            time: null,
+          }
+        },
+        {
+          id: 4,
+          context: {
+            title: '4 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_04.png'
+          },
+          properties: {
+            type: 'Outdoor Classes',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '24.00',
+              new: null
+            },
+            duration: 120,
+            languages: ['English', 'Spanish', 'German'],
+            time: null,
+          }
+        },
+        {
+          id: 5,
+          context: {
+            title: '5 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_05.png'
+          },
+          properties: {
+            type: 'Outdoor Classes',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '24.00',
+              new: null
+            },
+            duration: 120,
+            languages: ['English', 'Spanish', 'German'],
+            time: null,
+          }
+        },
+        {
+          id: 6,
+          context: {
+            title: '6 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_06.png'
+          },
+          properties: {
+            type: 'Outdoor Classes',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '24.00',
+              new: null
+            },
+            duration: 120,
+            languages: ['English', 'Spanish', 'German'],
+            time: null,
+          }
+        },
+        {
+          id: 7,
+          context: {
+            title: '7 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_07.png'
+          },
+          properties: {
+            type: 'Outdoor Classes',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '15.00',
+              new: '10.12'
+            },
+            duration: 120,
+            languages: ['English', 'Spanish', 'German'],
+            time: null,
+          }
+        },
+      ])
     })
     this.get('/api/card/:id', (schema, request)=>{
       const id = request.params.id
@@ -198,7 +358,6 @@ new Server({
               },
               meetingPoint: 'Пожалуйста, обратитесь в кассу Lineas Romero с подтверждением,чтобы забрать посадочный талон за 15 минут до отправления.',
             })
-          break;
             
         default:
           return {}

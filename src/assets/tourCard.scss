@@ -39,10 +39,9 @@
     position: relative;
     min-width: 260px;
     min-height: 144px;
-    
-    background: url('../../public/imgs/MainPage/PopularAdventures/item_picture_01.png');
     background-size: cover;
     border-radius: 8px;
+    background-repeat: no-repeat;
 
     &_horizontal {
       min-width: 292px;
@@ -103,12 +102,11 @@
     color: $text-primary;
     text-overflow: ellipsis;
     overflow: hidden;
-    /* изменить занчение */
-    margin-bottom: 70px;
+    margin-bottom: 46px;
     line-height: 130%;
 
     &_horizontal {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
   }
 
@@ -124,10 +122,44 @@
     }
 
     span {
+      display: block;
+      text-align: right;
+    }
+    
+    &_old {
+      text-decoration: line-through;
+      font-size: 16px;
+      font-weight: 600;
+      color: $text-primary;
+    }
+
+    &_new {
+      color: $primary;
+      font-weight: 600;
+      font-size: 22px;
+    }
+
+    &_base {
       font-weight: 600;
       font-size: 22px;
       color: $text-primary;
     }
+
+    &_savings {
+      font-weight: 500;
+      color: $primary;
+      font-size: 12px;
+      text-align: right;
+    }
+
     
+  }
+
+  &__tags {
+    .tags {
+      &__item {
+        margin-right: 20px;
+      }
+    }
   }
 }

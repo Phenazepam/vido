@@ -1,5 +1,5 @@
 <template>
-  <label class="checkbox">
+  <label class="checkbox" >
     <span class="checkbox__input">
 
       <input type="checkbox" name="checked" :value="value">
@@ -35,6 +35,9 @@ import '@/assets/checkbox.scss'
 
 export default {
   name: 'Checkbox',
+  data: () => ({
+    checked: false
+  }),
   props: {
     value: [ Number, Object, String, Array, Boolean ],
     type: String

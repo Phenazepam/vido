@@ -1,11 +1,9 @@
 <template>
-  <button
-    class="btn"
+  <button class="btn"
+    :class="typeButton"
     :type="type"
   >
-    <slot>
-
-    </slot>
+    <slot></slot>
   </button>
 </template>
 
@@ -15,27 +13,21 @@ import '@/assets/btn.scss'
 export default {
   name: 'Btn',
   props: {
-    type: String 
-
+    type: String,
+    reset: Boolean,
+    cansel: Boolean,
+    confirm: Boolean,
+  },
+  computed: {
+    typeButton() {
+      return this.reset 
+        ? 'btn_reset'
+        : this.cansel 
+        ? 'btn_cansel'
+        : this.confirm
+        ? 'btn_confrim'
+        : 'btn'
+    }
   }
 }
 </script>
-
-<style>
-  /* .btn {
-    vertical-align: middle;
-    width: 100%;
-    height: 50px;
-    font-size: 18px;
-    border-radius: 12px;
-    font-weight: bold;
-    border: none;
-  }
-  .btn:active, .btn:focus {
-    outline: none;
-  }
-  .btn_liner-gradient {
-    background: linear-gradient(180deg, #15D79D -46%, #00875F 119%);
-    color: #fff;
-  } */
-</style>

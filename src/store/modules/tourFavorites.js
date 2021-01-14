@@ -4,14 +4,11 @@ export default {
   },
   mutations: {
     updateStateTourFavorites: (state, update) => {
-      console.log(update);
       state.tours = update
     }
   },
   actions: {
     setTourFavourites:  ({ dispatch }, tour) => {
-
-      console.log(tour);
       
       if(!localStorage.tourFavorites) {
         localStorage.setItem('tourFavorites', JSON.stringify([tour]))
@@ -48,3 +45,5 @@ export default {
     }
   }
 }
+
+

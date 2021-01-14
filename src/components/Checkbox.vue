@@ -1,7 +1,7 @@
 <template>
-  <label class="checkbox">
+  <label class="checkbox" >
     <span class="checkbox__input">
-      <input type="checkbox" name="checked" :value="value">
+      <input type="checkbox" name="checked" :value="value" @checked="checked">
       <span class="checkbox__control">
         <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 3.625L5.61538 8L13 1" stroke="white" stroke-width="1.5"/>
@@ -24,10 +24,19 @@ import '@/assets/checkbox.scss'
 
 export default {
   name: 'Checkbox',
+  data: () => ({
+    checked: false
+  }),
   props: {
     title: String,
     subtitle: String,
     value: [ Number, Object, String, Array, Boolean ]
+  },
+  methods: {
+    checked () {
+      this.checked = !this.checked
+      this.checked ? this.$emit('input', this.value) : ''
+    }
   }
 
 }

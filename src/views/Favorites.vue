@@ -15,11 +15,7 @@
               v-for="tour in tourFavorites"
               :key="tour.id"
             >
-              <!-- <vi-card-vertical
-                :card_data="tour"
-              >
-              </vi-card-vertical> -->
-              <tour-card
+              <tour-card 
                 :data="tour"
               ></tour-card>
             </div>
@@ -32,7 +28,6 @@
 
 <script>
 import TourCard from '@/components/TourCard'
-import ViCardVertical from '@/components/vi-card-vertical'
 import { mapState } from 'vuex'
 
 export default {
@@ -46,7 +41,7 @@ export default {
     this.$store.dispatch('getTourFavourites')
   },
   components: {
-    TourCard, ViCardVertical,
+    TourCard
   }
 }
 </script>
