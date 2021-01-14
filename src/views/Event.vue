@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="event__title">
-          2-Hour Surfing Experience for Beginners in Famara
+          {{ event_data.title }}
         </div>
         <div class="row">
           <div class="event__heart">
@@ -11,22 +11,26 @@
           </div>
           <div class="event__price">
             <p class="event__price-other">from</p>
-            <p class="event__price-amount">15.89 €</p>
+            <p class="event__price-amount">{{ event_data.price }} €</p>
             <p class="event__price-other">for person</p>
           </div>
         </div>
       </div>
       <div class="event__info">
-        <div class="event__info-type">Outdoor Classes</div>
+        <div class="event__info-type">{{ event_data.type }}</div>
         <div class="event__info-ratingVidodo">
           <img src="@/../public/imgs/Event/rating_vidodo.png" alt="" />
-          4.5
-          <div class="event__info-ratingVidodo-reviews">Reviews: 67</div>
+          {{ event_data.ratingVidodo }}
+          <div class="event__info-ratingVidodo-reviews">
+            Reviews: {{ event_data.reviewsVidodo }}
+          </div>
         </div>
         <div class="event__info-ratingGeneral">
           <img src="@/../public/imgs/Event/rating_general.png" alt="" />
-          4.2
-          <div class="event__info-ratingVidodo-reviews">Reviews: 23</div>
+          {{ event_data.ratingGeneral }}
+          <div class="event__info-ratingVidodo-reviews">
+            Reviews: {{ event_data.reviewsGeneral }}
+          </div>
         </div>
         <div class="event__info-location">
           <div class="event__info-location-poi">
@@ -44,7 +48,7 @@
             </svg>
           </div>
           <div class="event__info-location-name">
-            Puerto del Carmen, Lanzarote
+            {{ event_data.location }}
           </div>
         </div>
       </div>
@@ -93,10 +97,10 @@
                 </svg>
               </div>
             </div>
-              <img
-                :src="require(`@/../public/imgs/Event/${mainPicture}`)"
-                alt=""
-              />
+            <img v-if="mainPicture !== ''"
+              :src="require(`@/../public/imgs/Event/${mainPicture}`)"
+              alt=""
+            />
           </div>
           <div class="event__photo-others">
             <div
@@ -105,7 +109,11 @@
               :key="pic"
               @click="changeMainPhoto(pic)"
             >
-              <img :src="require(`@/../public/imgs/Event/${pic}`)" alt="" />
+              <img 
+                v-if="pic !== undefined"
+                :src="require(`@/../public/imgs/Event/${pic}`)" 
+                alt="" 
+              />
               <div class="event__photo-others-onhover">
                 <svg
                   width="24"
@@ -371,7 +379,7 @@
           </ul>
         </div>
       </div>
-      <div class="event__fulldesc">
+      <!-- <div class="event__fulldesc">
         <div class="event__fulldesc-title">Full description</div>
         <div class="event__fulldesc-text" v-if="showShort">
           {{ fullDesc | limitTo }}
@@ -396,7 +404,7 @@
             />
           </svg>
         </div>
-      </div>
+      </div> -->
       <div class="event__included">
         <div class="event__included-title">What's included</div>
         <div class="event__included-text">
@@ -470,66 +478,61 @@
         </div>
       </div>
       <div class="event__meetingPoint">
-        <div class="event__meetingPoint-title">
-          Meeting point
-        </div>
+        <div class="event__meetingPoint-title">Meeting point</div>
         <div class="event__meetingPoint-text">
-          Пожалуйста, обратитесь в кассу Lineas Romero с подтверждением,
-          чтобы забрать посадочный талон за 15 минут до отправления.
+          Пожалуйста, обратитесь в кассу Lineas Romero с подтверждением, чтобы
+          забрать посадочный талон за 15 минут до отправления.
         </div>
       </div>
       <vi-card-carousel
-      :carousel_title = carouselTitle
-      :carousel_data = cards
-    />
+        :carousel_title="carouselTitle"
+        :carousel_data="cards"
+      />
     </div>
   </div>
 </template>
 <script>
-import ViCardCarousel from '@/components/vi-card-carousel.vue'
-import axios from 'axios'
+import ViCardCarousel from "@/components/vi-card-carousel.vue";
+import axios from "axios";
+import { mapState, mapGetters } from "vuex";
 export default {
   name: "Event",
-  components:{
+  components: {
     ViCardCarousel,
   },
   data() {
     return {
-      cards:[],
-      carouselTitle: 'You may also like',
-      mainPicture: "photo_main.png",
-      pictures: [
-        "other 1.jpg",
-        "other 2.jpg",
-        "other 3.jpeg",
-        "other 4.jpg",
-        "other 5.jpg",
-      ],
-
-      fullDesc:
-        "Spend a fantastic day exploring Lanzarote. Explore the picturesque" +
-        "town of Yaisa on the edge of the volcano, before you have the" +
-        "opportunity to appreciate the volcanic crater on Mount Timanfaya, or" +
-        "just have a cup of coffee with milk (cafe con leche). Then head west" +
-        "to the imposing rocky shores of Los Hervideros with a unique structure" +
-        "formed by volcanic eruptions. Explore Lago Verde, a green lake in the" +
-        "middle of El Golfo's black sandy beach. Admire the bay, formed from" +
-        "tuff and lava фыв фыв фыв фыв фыв фыв фы вфы вф фвы вфы вфы вфы вфы фы" +
-        "вфы вфы вфы в фывфы вфы вфы фы вфыв фы вфы вфы вфыв фыв фы вфы",
-
+      cards: [],
+      carouselTitle: "You may also like",
+      mainPicture: "",
+      pictures: [],
       showShort: true,
     };
+  },
+  computed: {
+    ...mapState({
+      event_data: (state) => state.event.Event,
+    }),
   },
   created() {
     this.interval = setInterval(
       () => this.nextMainPhoto(this.pictures[0]),
       20000
     );
-    axios.get('/api/cards')
-    .then(Response => {
-      this.cards = Response.data
+    axios.get("/api/cards").then((Response) => {
+      this.cards = Response.data;
     });
   },
+  async mounted() {
+    await this.$store.dispatch("getEvent", 1);
+    console.log("-------------->", this.event_data.photos[0]);
+    this.mainPicture = this.event_data.photos[0];
+    this.pictures = this.event_data.photos.filter(
+      (el) => el !== this.event_data.photos[0]
+    );
+    console.log(this.mainPicture, this.pictures);
+  },
+
   methods: {
     changeMainPhoto(img) {
       this.pictures[this.pictures.indexOf(img)] = this.mainPicture;
@@ -545,14 +548,6 @@ export default {
       this.pictures.unshift(this.mainPicture);
       this.mainPicture = img;
       this.pictures.splice(this.pictures.indexOf(img), 1);
-    },
-    showFullDesc() {
-      console.log(this.$refs.fullDescText);
-      if (this.$refs.fullDescText.style.overflow == "hidden") {
-        this.$refs.fullDescText.style.overflow = "initial";
-      } else {
-        this.$refs.fullDescText.style.overflow = "hidden";
-      }
     },
   },
   filters: {
@@ -1010,13 +1005,13 @@ export default {
       }
     }
   }
-  &__meetingPoint{
+  &__meetingPoint {
     margin-top: 40px;
     &-title {
       font-weight: 700;
       font-size: 24px;
       line-height: 29px;
-      }
+    }
     &-text {
       margin-top: 17px;
       font-weight: 500;

@@ -1,14 +1,14 @@
 <template>
   <div class="vi-card-vertical">
     <div class="card">
-      <router-link to="/event" tag="div" class="card__picture">
+      <router-link to="" tag="div" class="card__picture">
         <img
           :src="require(`@/../public/imgs/MainPage/PopularAdventures/${card_data.img}`)"
           width="262px"
           height="144px"
           alt="img"
         />
-        <div class="card__picture-heart">
+        <div class="card__picture-heart" @click="addFavorites">
           <img
             src="@/../public/imgs/MainPage/PopularAdventures/heart_orange.png"
             alt=""
@@ -68,11 +68,16 @@ export default {
       default(){
         return {}
       }
-    }
+    },
+    // data: Object
   },
   methods:{
     getImg(img){
       return img;
+    },
+    addFavorites() {
+      console.log(this.card_data)
+      this.$store.dispatch('setTourFavourites', this.card_data)      
     }
   }
 }

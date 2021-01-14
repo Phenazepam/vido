@@ -65,9 +65,9 @@
           'tour-card__about_horizontal': horizontal 
         }" 
       >
-        <div class="tour-card__title">
+        <router-link to="/event" tag="div" class="tour-card__title">
           {{ data.title }}
-        </div>
+        </router-link>
 
         <div 
           :class="{ 

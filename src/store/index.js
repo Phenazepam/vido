@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import tourFavorites from './modules/tourFavorites'
 import tourInformation from './modules/tourInformation'
 import tours from './modules/tours'
+import event from './modules/event'
 
 Vue.use(Vuex)
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
   modules: {
     tours,
     tourFavorites,
-    tourInformation
+    tourInformation,
+    event
   }
 })
