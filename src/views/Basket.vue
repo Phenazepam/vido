@@ -65,6 +65,11 @@
         </div>
       </div>
     </div>
+
+    <vi-card-carousel
+      :carousel_title="carouselTitle"
+      :carousel_data="cards"
+    />
   </div>
 
 </template>
