@@ -143,10 +143,7 @@
         </div>
       </div>
       <div class="event__shortdesc">
-        Spend a fantastic day exploring Lanzarote. Explore the picturesque town
-        of Yaisa on the edge of the volcano, before you have the opportunity to
-        appreciate the volcanic crater on Mount Timanfaya, or just have a cup of
-        coffee with milk (cafe con leche).
+        {{event_data.shortDesc}}
       </div>
       <div class="event__about">
         <div class="event__about-title">About the event</div>
@@ -169,8 +166,7 @@
             </svg>
             <div class="event__about-item-desc">
               <div class="event__about-item-desc-title">
-                Cancellation 24 hours before the start of the activity with a
-                full refund
+                {{event_data.about.cancellation.title}}
               </div>
             </div>
           </div>
@@ -207,8 +203,8 @@
               </defs>
             </svg>
             <div class="event__about-item-desc">
-              <div class="event__about-item-desc-title">Duration: 6h</div>
-              <div class="event__about-item-desc-text">Start time 11:30</div>
+              <div class="event__about-item-desc-title">{{event_data.about.duration.title}}</div>
+              <div class="event__about-item-desc-text">{{event_data.about.duration.desc}}</div>
             </div>
           </div>
           <div class="event__about-item">
@@ -236,7 +232,7 @@
             </svg>
             <div class="event__about-item-desc">
               <div class="event__about-item-desc-title">
-                Paper and mobile vouchers accepted
+                {{event_data.about.vouchers.title}}
               </div>
             </div>
           </div>
@@ -271,9 +267,9 @@
               />
             </svg>
             <div class="event__about-item-desc">
-              <div class="event__about-item-desc-title">Tour guide</div>
+              <div class="event__about-item-desc-title">{{event_data.about.tourGuide.title}}</div>
               <div class="event__about-item-desc-text">
-                Spanish, English, French, German
+                {{event_data.about.tourGuide.desc}}
               </div>
             </div>
           </div>
@@ -301,9 +297,9 @@
               />
             </svg>
             <div class="event__about-item-desc">
-              <div class="event__about-item-desc-title">Not suitable for:</div>
+              <div class="event__about-item-desc-title">{{event_data.about.notSuitable.title}}</div>
               <div class="event__about-item-desc-text">
-                People in wheelchairs
+                {{event_data.about.notSuitable.desc}}
               </div>
             </div>
           </div>
@@ -356,11 +352,9 @@
             </svg>
 
             <div class="event__about-item-desc">
-              <div class="event__about-item-desc-title">With transfer</div>
+              <div class="event__about-item-desc-title">{{event_data.about.transfer.title}}</div>
               <div class="event__about-item-desc-text">
-                Pick-up at or near your hotel in Lanzarote. Meet at Playa Blanca
-                at 8:40 am. Puerto Calero and Puerto del Carmen at 9:10 am.
-                Arrecife at 9:40 am Costa Teguise at 9:55 am
+                {{event_data.about.transfer.desc}}
               </div>
             </div>
           </div>
@@ -370,22 +364,21 @@
         <div class="event__sights-title">Sights</div>
         <div class="event__sights-text">
           <ul>
-            <li>
-              Get panoramic views of Lanzarote's north coast as you cross La
-              Graciosa
+            <li 
+              v-for="(item, i) in event_data.sigths"
+              :key="i"
+            >{{item}}
             </li>
-            <li>Admire white sand beaches and clear waters</li>
-            <li>Swimming and snorkeling in the natural marine reserve</li>
           </ul>
         </div>
       </div>
-      <!-- <div class="event__fulldesc">
+      <div class="event__fulldesc">
         <div class="event__fulldesc-title">Full description</div>
         <div class="event__fulldesc-text" v-if="showShort">
-          {{ fullDesc | limitTo }}
+          {{ event_data.fullDesc | limitTo }}
         </div>
         <div class="event__fulldesc-text" v-else>
-          {{ fullDesc }}
+          {{ event_data.fullDesc }}
         </div>
         <div class="event__fulldesc-control" @click="showShort = !showShort">
           <svg
@@ -404,16 +397,15 @@
             />
           </svg>
         </div>
-      </div> -->
+      </div>
       <div class="event__included">
         <div class="event__included-title">What's included</div>
         <div class="event__included-text">
           <ul>
-            <li>Visiting volcanoes</li>
-            <li>Entrance ticket to Jameos del Agud</li>
-            <li>Travel insurance for the duration of the tour</li>
-            <li>Guide</li>
-            <li>Bus transfers</li>
+            <li
+              v-for="(item, i) in event_data.included"
+              :key="i" 
+            >{{item}}</li>
           </ul>
         </div>
       </div>
@@ -421,7 +413,10 @@
         <div class="event__notincluded-title">What's not included</div>
         <div class="event__notincluded-text">
           <ul>
-            <li>Camel ride: 6 € for 25 minutes.</li>
+            <li
+              v-for="(item, i) in event_data.notIncluded"
+              :key="i"
+            >{{item}}</li>
           </ul>
         </div>
       </div>
@@ -429,12 +424,10 @@
         <div class="event__importantInfo-title">Important information</div>
         <div class="event__importantInfo-text">
           <ul>
-            <li>
-              Sail to La Graciosa Island and enjoy the quiet beaches on a 6-hour
-              journey. Swim, kayak and relax in the blue waters of the natural
-              park and marine reserve. Benefit from complimentary drinks and a
-              delicious lunch.
-            </li>
+            <li
+              v-for="(item, i) in event_data.importantInfo"
+              :key="i" 
+            >{{item}}</li>
           </ul>
         </div>
       </div>
@@ -444,35 +437,19 @@
           <div class="event__covidInfo-text-measures">
             Принимаются меры по обеспечению безопасности:
             <ul>
-              <li>
-                Regular cleaning is carried out at all points of interaction
-                with customers
-              </li>
-              <li>All participants are required to wear protective masks</li>
-              <li>
-                Regular cleaning is carried out at all points of interaction
-                with customers
-              </li>
-              <li>All participants are required to wear protective masks</li>
-              <li>
-                Regular cleaning is carried out at all points of interaction
-                with customers
-              </li>
+              <li
+                v-for="(item, i) in event_data.covidInfo.measures"
+                :key="i"
+              >{{item}}</li>
             </ul>
           </div>
           <div class="event__covidInfo-text-demands">
             Требования к участникам
             <ul>
-              <li>
-                Regular cleaning is carried out at all points of interaction
-                with customers
-              </li>
-              <li>All participants are required to wear protective masks</li>
-              <li>
-                Regular cleaning is carried out at all points of interaction
-                with customers
-              </li>
-              <li>All participants are required to wear protective masks</li>
+              <li
+                v-for="(item, i) in event_data.covidInfo.demands"
+                :key="i"
+              >{{item}}</li>
             </ul>
           </div>
         </div>
@@ -480,8 +457,7 @@
       <div class="event__meetingPoint">
         <div class="event__meetingPoint-title">Meeting point</div>
         <div class="event__meetingPoint-text">
-          Пожалуйста, обратитесь в кассу Lineas Romero с подтверждением, чтобы
-          забрать посадочный талон за 15 минут до отправления.
+         {{event_data.meetingPoint}}
         </div>
       </div>
       <vi-card-carousel
@@ -525,12 +501,12 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch("getEvent", 1);
-    console.log("-------------->", this.event_data.photos[0]);
+    console.log("-------------->", this.event_data);
     this.mainPicture = this.event_data.photos[0];
     this.pictures = this.event_data.photos.filter(
       (el) => el !== this.event_data.photos[0]
     );
-    console.log(this.mainPicture, this.pictures);
+    
   },
 
   methods: {
