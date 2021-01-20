@@ -561,7 +561,6 @@ export default {
 <style lang="scss">
 .row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 .event {

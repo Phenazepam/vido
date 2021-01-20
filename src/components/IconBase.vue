@@ -20,6 +20,9 @@ import IconMessages from './img/IconMessages'
 import IconTruck from './img/IconTruck'
 import IconUsers from './img/IconUsers'
 import IconDelete from './img/IconDelete'
+import IconSearch from './img/IconSearch'
+import IconCalendar from './img/IconCalendar'
+import IconDown from './img/IconDown'
 
 export default {
   name: 'IconBase',
@@ -41,7 +44,10 @@ export default {
     IconMessages,
     IconTruck,
     IconUsers,
-    IconDelete
+    IconDelete,
+    IconSearch,
+    IconCalendar,
+    IconDown
   }
 }
 </script>

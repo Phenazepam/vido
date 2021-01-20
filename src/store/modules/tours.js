@@ -1,4 +1,6 @@
 import axios from 'axios'
+import sortingBy from '@/sortingBy'
+
 
 export default {
   state: {
@@ -7,12 +9,15 @@ export default {
   mutations: {
     updateStateTours: (state, update) => {
       state.tours = update
+    },
+    sortTours: (state, sort) => {
+      state.tours = sortingBy[sort](state.tours)
     }
   },
   actions: {
-    getTours: async ({ commit }, top = 100) => {
+    getTours: async ({ commit }) => {
       const result = await axios.get('/api/events')
       commit('updateStateTours', result.data)
     }
-  },
+  }
 }

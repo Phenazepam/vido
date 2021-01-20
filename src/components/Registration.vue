@@ -71,10 +71,10 @@
 </template>
 
 <script>
-import InputFileds from './InputFileds'
-import Checkbox from './Checkbox'
+import InputFileds from './controls/InputFileds'
+import Checkbox from './controls/Checkbox'
 import Icon from './Icon'
-import Btn from './Btn'
+import Btn from './controls/Btn'
 
 export default {
   name: 'Registration',

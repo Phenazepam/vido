@@ -3,7 +3,6 @@
     <div class="select__inner" @click="areOptionsVisible = !areOptionsVisible">
       <p class="select__title">
         <img 
-           
           :src="active.img" alt=""
         >
         {{ selected ? selected.text : "Выберите опцию" }}
@@ -13,7 +12,7 @@
     <div class="options" v-if="areOptionsVisible">
       <p v-for="item in items" :key="item.value" @click="selectedItem(item)">
         <img 
-           v-if="item.img"
+          v-if="item.img"
           src= "@/../public/imgs/header_language_polish.png" alt=""
         >
         {{ item.text }}

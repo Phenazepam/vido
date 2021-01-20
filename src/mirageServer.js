@@ -118,7 +118,7 @@ new Server({
             },
             duration: 120,
             languages: ['English', 'Spanish', 'German'],
-            time: null,
+            time: '08:00',
 
           }
         },
@@ -136,12 +136,12 @@ new Server({
               vidodo: '4.1'
             },
             price: {
-              base: '24.12',
+              base: '23.12',
               new: '15.22'
             },
             duration: 120,
             languages: ['English', 'Spanish', 'German'],
-            time: null,
+            time: '09:00',
 
           }
         },
@@ -159,12 +159,12 @@ new Server({
               vidodo: '4.1'
             },
             price: {
-              base: '24.00',
+              base: '21.00',
               new: null
             },
             duration: 120,
             languages: ['English', 'Spanish', 'German'],
-            time: null,
+            time: '08:30',
           }
         },
         {
@@ -181,12 +181,12 @@ new Server({
               vidodo: '4.1'
             },
             price: {
-              base: '24.00',
+              base: '12.00',
               new: null
             },
             duration: 120,
             languages: ['English', 'Spanish', 'German'],
-            time: null,
+            time: '13:00',
           }
         },
         {
@@ -203,7 +203,7 @@ new Server({
               vidodo: '4.1'
             },
             price: {
-              base: '24.00',
+              base: '6.00',
               new: null
             },
             duration: 120,
@@ -225,12 +225,12 @@ new Server({
               vidodo: '4.1'
             },
             price: {
-              base: '24.00',
+              base: '18.00',
               new: null
             },
             duration: 120,
             languages: ['English', 'Spanish', 'German'],
-            time: null,
+            time: '13:50',
           }
         },
         {
@@ -247,12 +247,34 @@ new Server({
               vidodo: '4.1'
             },
             price: {
-              base: '15.00',
+              base: '28.00',
               new: '10.12'
             },
             duration: 120,
             languages: ['English', 'Spanish', 'German'],
-            time: null,
+            time: '14:50',
+          }
+        },
+        {
+          id: 8,
+          context: {
+            title: '8 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_02.png'
+          },
+          properties: {
+            type: 'Outdoor Classes',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '25.00',
+              new: '10.12'
+            },
+            duration: 120,
+            languages: ['English', 'Spanish', 'German'],
+            time: '14:50',
           }
         },
       ])

@@ -11,12 +11,7 @@
           Lanzarote
         </div>
         <div class="header__control-item">
-          <vi-select
-            class="languageSelector nav__item"
-            v-model="selectedLanguage"
-            :items="languageOptions"
-            :active="selectedLanguage"
-          />
+          
         </div>
         <div class="header__control-item">
           EUR €
@@ -185,7 +180,7 @@ import '@/assets/header.scss'
 
 import Auth from '@/components/Auth'
 import viSelect from '@/components/vi-select'
-import Btn from '@/components/Btn'
+import Btn from '@/components/controls/Btn'
 import Icon from '@/components/Icon'
 
 export default {

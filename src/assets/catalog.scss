@@ -1,139 +1,114 @@
 .catalog {
-  &__search {
+  .category {
     display: flex;
     justify-content: space-between;
-    margin: 32px 0;
-  }
+    margin: 0 0 40px 0;
 
-  &__covid-info {
-    padding: 16px;
-    background: $beige;
-    border: 1px solid #E6DAC7;
-    font-weight: 600;
-    font-size: 14px;
-    color: #7E776A;
-    box-sizing: border-box;
-    border-radius: 8px;
-    margin-bottom: 16px;
-
-    a {
-      color: $primary;
-    }
-
-  }
-
-  &__title {
-    font-weight: bold;
-    font-size: 36px;
-    line-height: 44px;
-    color: $text-primary;
-  }
-
-  &__category {
-    display: flex;
-    justify-content: space-between;
-
-    &-item {
-      position: relative;
-      width: 265px;
-      height: 70px;
-      border: 1px solid $gray;
-      border-radius: 8px;
-      background: $light-gray-gradient;
+    &__item {
       display: flex;
+      position: relative;
       align-items: center;
+      padding: 15px 25px;
+      border-radius: 8px;
+      border: 1px solid $gray;
+      width: 263px;
+      height: 70px;
+      background: $light-blue-gradient;
+
+      p {
+        color: #4B587B;
+        font-weight: 600;
+        font-size:  16px;
+      }
 
       img {
         position: absolute;
-        top: -3px;
-        right: 15px;
+        right: 18px;
       }
-    }
-
-    &-item-text {
-      font-weight: 600;
-      font-size: 16px;
-      color: #4B587B;
-      padding: 0 16px;
     }
   }
 
-  &__main {
+  &-main {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 40px;
   }
 
-  &__cards {
+  &-sidebar {
     width: 100%;
-    padding: 0 0 0 30px;
-    
-  }
+    max-width: 263px;
+    height: 100%;
+    margin: 0 30px 0 0;
+    border-radius: 8px;
+    background: #FFFFFF;
+    border: 1px solid #EEF0F5;
 
-  &__filters {
-    .filters {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 16px;
+    &__select-dates {
+      padding: 12px 16px;
+      background-color: #D5EFFB;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
 
-      &__found {
+      p {
         font-weight: 500;
         font-size: 16px;
-        color: $primary;
-      }
-
-      &__text {
-        margin-right: 16px;
         color: $text-primary;
+        padding: 0 0 8px 0;
       }
-    }
-  }
-
-  .sidebar {
-    width: 265px;
-    border-radius: 8px;
-    border: 1px solid $gray;
-    max-height: 100%;
-
-    &__header {
-      background: $light-blue;
-      padding: 12px 16px;
-      border-bottom: 1px solid $gray;
-
-      &-title {
-        font-weight: 500;
-      }
-    }
-
-    &__item {
-      padding: 16px;
-      border-bottom: 1px solid $gray;
-    }
-
-    &__item:last-child {
-      border-bottom: none;
     }
 
     &__title {
+      padding: 0 0 8px 0;
+      color: $text-primary;
       font-weight: bold;
       font-size: 16px;
-      line-height: 19px;
-      color: $text-primary;
+    }
+
+    &__item {
+      padding: 20px 15px;
+      border-bottom: 1px solid #EEF0F5;
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
 
     &__control {
-      margin-top: 12px;
-    }
+      margin: 0 0 12px 0;
 
-    &__filter {
-      margin: 8px 8px 0 0;
-    }
+      &_tag {
+        margin: 0 8px 8px 0;
+      }
 
-    &__reset {
-      margin-top: 25px;
+      &:last-child {
+        margin: 0;
+      }
     }
-
   }
 
+  .events {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0;
+
+      span {
+        display: inline-block;
+        margin-right: 16px;
+      }
+    }
+
+    &__found {
+      color: $primary;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    &__sorting {
+      color: $text-primary;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  
 }

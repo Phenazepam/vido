@@ -11,6 +11,10 @@
       <div class="tour-card__add-favorites"
         @click="addFavorites"
       >
+        <icon-base 
+          width="20" height="20" viewBox="0 0 20 20"
+          name="favorites"
+        />
         <icon-favorites />
       </div>
     </div>
@@ -30,7 +34,12 @@
               <div class="rating__item">
                 <div class="row">
                   <div class="rating__item-logo">
-                    <icon-rating-vidodo/>
+                    <icon-base 
+                      width="10" 
+                      height="13" 
+                      viewBox="0 0 10 13"
+                      name="rating-vidodo"
+                    />
                   </div>
                   <div class="rating__item-score">
                     <p>{{ data.properties.rating.vidodo }}</p>
@@ -41,7 +50,13 @@
               <div class="rating__item">
                 <div class="row">
                   <div class="rating__item-logo">
-                    <icon-rating-general/>
+                    <icon-base 
+                      width="12" 
+                      height="14" 
+                      viewBox="0 0 12 14" 
+                      name="rating-general"
+                    />
+                    
                   </div>
                   <div class="rating__item-score">
                     <p>{{ data.properties.rating.general }}</p>

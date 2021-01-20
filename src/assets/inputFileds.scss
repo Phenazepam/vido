@@ -1,21 +1,44 @@
 .input {
-  display: block;
+  display: inline-block;
   position: relative;
+  
+  &__inner {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+  }
 
   &__field {
     width: 100%;
-    height: 100%;
-    padding: 12px 15px;
-    font-size: 18px;
-    background: #FFFFFF;
-    border: 1px solid #DCDFE7;
-    box-sizing: border-box;
-    border-radius: 12px;
+    height: 40px;
+    padding: 10px 20px 10px 35px;
+    border-radius: 8px;
+    border: 1px solid $gray;
+
+    &_search {
+      width: 292px;
+      margin: 0 8px 0 0;
+    }
+
+    &_datepicker {
+      height: 36px;
+    }
+
+    &_authorisation {
+      height: 46px;
+      border-radius: 12px;
+    }
   }
 
   &__field:focus {
     outline: none;
     border: 1px solid $primary;
+  }
+
+  &__field::placeholder {
+    font-weight: 500;
   }
 
 }
