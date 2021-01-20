@@ -21,7 +21,7 @@
     <div class="page-catalog catalog">
 
       <!-- category -->
-      <div class="catalog-category category">
+      <!-- <div class="catalog-category category">
         <div class="category__item"
           v-for="el in category"
           :key="el"
@@ -29,7 +29,7 @@
           <p>{{ el }}</p>
           <img src="@/../public/imgs/wooman.png">
         </div>
-      </div>
+      </div> -->
 
       <div class="catalog-main">
 
@@ -44,14 +44,17 @@
             </div>
 
             <div class="catalog-sidebar__item">
-              <div class="catalog-sidebar__title">
+              <div class="catalog-sidebar__title" >
                 Time
               </div>
               <div class="catalog-sidebar__control"
                 v-for="el in sidebarFilters.time"
                 :key="el.title"
               >
-                <checkbox type="inverse">
+                <checkbox 
+                  type="inverse" 
+                  @isChecked="isChecked($event, 'time')"
+                >
                   <template v-slot:title>
                     {{ el.title }}
                   </template>
@@ -67,7 +70,10 @@
                 v-for="el in sidebarFilters.travel"
                 :key="el"
               >
-                <checkbox type="inverse">
+                <checkbox 
+                  type="inverse"
+                  @isChecked="isChecked($event, 'travel')"
+                >
                   <template v-slot:title>
                     {{ el }}
                   </template>
@@ -84,7 +90,10 @@
                   v-for="(el, i) in sidebarFilters.duration"
                   :key="i"
                 >
-                  <checkbox-tag :value="el">
+                  <checkbox-tag 
+                    :value="el"
+                    @isChecked="isChecked($event, 'duration')"
+                  >
                     {{ el }}
                   </checkbox-tag>
                 </div>
@@ -97,11 +106,13 @@
               </div>
               <div class="page-row">
                 <div class="catalog-sidebar__control catalog-sidebar__control_tag"
-                  @click="checkedProp"
                   v-for="el in sidebarFilters.languages"
                   :key="el.value"
                 >
-                  <checkbox-tag :value="el.value">
+                  <checkbox-tag 
+                    value="el"
+                    @isChecked="isChecked($event, 'languages')"
+                  >
                     {{ el.title }}
                   </checkbox-tag>
                 </div>
@@ -116,7 +127,10 @@
                 v-for="el in sidebarFilters.other"
                 :key="el"
               >
-                <checkbox type="inverse">
+                <checkbox 
+                  type="inverse"
+                  @isChecked="isChecked($event, 'other')"
+                >
                   <template v-slot:title>
                     {{ el }}
                   </template>
@@ -145,15 +159,18 @@
               />  
             </div>
           </div>
+          <transition-group name="list" tag="div">
           <div class="catalog-events__item"
             v-for="tour in tours"
             :key="tour.id"
           >
-            <tour-card 
-              horizontal
-              :data="tour"
-            ></tour-card>
+            
+              <tour-card 
+                horizontal
+                :data="tour"
+              ></tour-card>
           </div>
+            </transition-group>
         </div>
 
       </div>
@@ -168,13 +185,12 @@ import '@/assets/catalog.scss'
 
 import Checkbox from '@/components/controls/Checkbox'
 import CheckboxTag from '@/components/controls/CheckboxTag'
-import TourCard from '@/components/TourCard'
-import Btn from '@/components/controls/Btn'
 import InputFileds from '@/components/controls/InputFileds'
 import vSelect from '@/components/controls/vSelect'
+import TourCard from '@/components/TourCard'
+import Btn from '@/components/controls/Btn'
 
 import { mapState } from 'vuex'
-
 
 export default {
   name: 'Catalog',
@@ -205,15 +221,15 @@ export default {
       time: [
         {
           title: '08:00 - 12:00 hr',
-          time: { to: '08:00', from: '12:00' }
+          value: { to: '08:00', from: '12:00' }
         },
         {
           title: '12:00 - 17:00 hr',
-          time: { to: '12:00', from: '17:00' }
+          value: { to: '12:00', from: '17:00' }
         },
         {
           title: '17:00 - 23:59 hr',
-          time: { to: '17:00', from: '23:59' }
+          value: { to: '17:00', from: '23:59' }
         }
       ],
       travel: [
@@ -268,7 +284,14 @@ export default {
       this.$store.commit('sortTours', el.value)
     },
     checkedProp() {
-      console.log(1);
+
+    },
+    isChecked(event, prop) {
+      if (event) {
+        this.$store.commit('filterTours', prop)
+      } else {
+        this.$store.dispatch('getTours')
+      }
     }
   },
   created () {
@@ -334,6 +357,17 @@ export default {
         color: $primary;
       }
     }
+  }
 
+  .list-item {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .list-enter-active, .list-leave-active {
+    transition: all .5s;
+  }
+  .list-enter, .list-leave-to /* .list-leave-active до версии 2.1.8 */ {
+    opacity: 0;
+    transform: translateY(30px);
   }
 </style>

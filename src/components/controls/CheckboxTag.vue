@@ -1,5 +1,5 @@
 <template>
-  <label class="checkbox-tag">
+  <label class="checkbox-tag"  @input="checked">
     
     <input 
       type="checkbox" 
@@ -25,5 +25,11 @@ export default {
   props: {
     value: [ Number, Object, String, Array, Boolean ]
   },
+  methods: {
+    checked() {
+      this.isChecked = !this.isChecked
+      this.$emit('isChecked', this.isChecked)
+    }
+  }
 }
 </script>

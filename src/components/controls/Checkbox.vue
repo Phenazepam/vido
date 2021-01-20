@@ -1,5 +1,5 @@
 <template>
-  <label class="checkbox" @click="checked">
+  <label class="checkbox" @input="checked">
     <span class="checkbox__input">
 
       <input type="checkbox" :value="value">
@@ -34,7 +34,7 @@ import '@/assets/checkbox.scss'
 export default {
   name: 'Checkbox',
   data: () => ({
-    counter: 0
+    isChecked: false
   }),
   props: {
     value: [ Number, Object, String, Array, Boolean ],
@@ -42,7 +42,8 @@ export default {
   },
   methods: {
     checked() {
-      this.$emit('input', this.counter++)
+      this.isChecked = !this.isChecked
+      this.$emit('isChecked', this.isChecked)
     }
   }
 
