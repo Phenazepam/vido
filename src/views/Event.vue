@@ -1,7 +1,7 @@
 <template>
   <div class="event">
     <div class="container">
-      <div class="row">
+      <div class="row justify-between">
         <div class="event__title">
           {{ event_data.title }}
         </div>
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="event__photo">
-        <div class="row">
+        <div class="row justify-between">
           <div class="event__photo-main">
             <div class="event__photo-main-controls">
               <div
@@ -166,7 +166,7 @@
             </svg>
             <div class="event__about-item-desc">
               <div class="event__about-item-desc-title">
-                {{event_data.about.cancellation.title}}
+                 {{event_data.about != null ? event_data.about.cancellation.title : ''}} 
               </div>
             </div>
           </div>
@@ -469,12 +469,13 @@
 </template>
 <script>
 import ViCardCarousel from "@/components/vi-card-carousel.vue";
+import CheckAvailability from "@/components/CheckAvailability.vue";
 import axios from "axios";
 import { mapState, mapGetters } from "vuex";
 export default {
   name: "Event",
   components: {
-    ViCardCarousel,
+    ViCardCarousel, CheckAvailability
   },
   data() {
     return {
