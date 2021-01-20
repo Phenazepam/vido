@@ -130,7 +130,7 @@ new Server({
             img: 'item_picture_02.png'
           },
           properties: {
-            type: 'Outdoor Classes',
+            type: 'Sailing Tours',
             rating: {
               general: '4.2',
               vidodo: '4.1'
@@ -153,7 +153,7 @@ new Server({
             img: 'item_picture_03.png'
           },
           properties: {
-            type: 'Outdoor Classes',
+            type: 'Sightseeing Tours',
             rating: {
               general: '4.2',
               vidodo: '4.1'
@@ -197,7 +197,7 @@ new Server({
             img: 'item_picture_05.png'
           },
           properties: {
-            type: 'Outdoor Classes',
+            type: 'Sailing Tours',
             rating: {
               general: '4.2',
               vidodo: '4.1'
@@ -219,7 +219,7 @@ new Server({
             img: 'item_picture_06.png'
           },
           properties: {
-            type: 'Outdoor Classes',
+            type: 'Sightseeing Tours',
             rating: {
               general: '4.2',
               vidodo: '4.1'
@@ -263,7 +263,7 @@ new Server({
             img: 'item_picture_02.png'
           },
           properties: {
-            type: 'Outdoor Classes',
+            type: 'Sailing Tours',
             rating: {
               general: '4.2',
               vidodo: '4.1'

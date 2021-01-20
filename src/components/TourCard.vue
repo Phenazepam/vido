@@ -15,7 +15,6 @@
           width="20" height="20" viewBox="0 0 20 20"
           name="favorites"
         />
-        <icon-favorites />
       </div>
     </div>
     
@@ -24,7 +23,10 @@
       class="tour-card__content"
     >
       <div class="row justify-between">
-        <div class="tour-card__type">
+        <div 
+          class="tour-card__type"
+          :class="setClass(data.properties.type)"
+        >
           {{ data.properties.type }}
         </div>
         <div class="tour-card__rating">
@@ -140,44 +142,28 @@ import '@/assets/tourCard.scss'
 
 import IconBase from './IconBase'
 
-import IconFavorites from './img/IconFavorites'
-import IconRatingVidodo from './img/IconRatingVidodo'
-import IconRatingGeneral from './img/IconRatingGeneral'
-import IconMessages from './img/IconMessages'
-import IconTruck from './img/IconTruck'
-import IconUsers from './img/IconUsers'
-
 export default {
   name: 'TourCard',
   data: () => ({
     tags: ['messages','truck', 'users']
   }),
   components: {
-    IconFavorites,
-    IconRatingVidodo,
-    IconRatingGeneral,
-    IconMessages,
-    IconTruck,
-    IconUsers,
     IconBase
   },
   props: {
     horizontal: Boolean,
     data: Object
   },
-
   methods: {
     addFavorites() {
       this.$store.dispatch('setTourFavourites', this.data)      
     },
-    setImage: img => {
-      return `background-image: url('/imgs/MainPage/PopularAdventures/${img}')`
+    setClass( txt ) {
+      return `tour-card__type_${txt.split(' ')[0].toLowerCase()}`
     },
-    loadingTags: tag => {
-      if (tag) {
-        return `Icon${tag}`
-      }
-    } 
+    setImage( img ) {
+      return `background-image: url('/imgs/MainPage/PopularAdventures/${img}')`
+    }
   }
 }
 </script>

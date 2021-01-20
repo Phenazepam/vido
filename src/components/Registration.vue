@@ -19,34 +19,43 @@
     <div class="auth__control control">
       <div class="control__item">
         <input-fileds
+          authorisation
           placeholder="First name"
         />
       </div>
       <div class="control__item">
         <input-fileds
+          authorisation
           placeholder="Last name"
         />
       </div>
       <div class="control__item">
         <input-fileds
+          authorisation
           placeholder="E-mail"
         />
       </div>
       <div class="control__item">
         <input-fileds
+          authorisation
           placeholder="Password"
         />
       </div>
       <div class="control__item">
         <input-fileds
+          authorisation
           placeholder="Confirm password"
         />
       </div>
       <div class="control__item">
-        <Checkbox 
-          title="Активировать уникальные предложения"
-          subtitle="Время от времени вы также будете получать рекламные сообщения. Вы сможете отписаться в любой момент"
-        />
+        <checkbox>
+          <template v-slot:title>
+            Я хочу получать уникальные предложения
+          </template>
+          <template v-slot:subtitle>
+            Время от времени вы также будете получать рекламные сообщения. Вы сможете отписаться в любой момент
+          </template>
+        </checkbox>
       </div>
       
       <div class="control__item control_action">

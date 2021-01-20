@@ -13,8 +13,7 @@
       <div>
         <input-fileds
           search
-          placeholder="Find something specific"
-        />
+          placeholder="Find something specific"/>
         <btn search>Search</btn>
       </div>
     </div>
@@ -82,10 +81,10 @@
               </div>
               <div class="page-row">
                 <div class="catalog-sidebar__control catalog-sidebar__control_tag"
-                  v-for="el in sidebarFilters.travel"
-                  :key="el"
+                  v-for="(el, i) in sidebarFilters.duration"
+                  :key="i"
                 >
-                  <checkbox-tag>
+                  <checkbox-tag :value="el">
                     {{ el }}
                   </checkbox-tag>
                 </div>
@@ -98,11 +97,12 @@
               </div>
               <div class="page-row">
                 <div class="catalog-sidebar__control catalog-sidebar__control_tag"
+                  @click="checkedProp"
                   v-for="el in sidebarFilters.languages"
-                  :key="el"
+                  :key="el.value"
                 >
-                  <checkbox-tag>
-                    {{ el }}
+                  <checkbox-tag :value="el.value">
+                    {{ el.title }}
                   </checkbox-tag>
                 </div>
               </div>
@@ -239,10 +239,22 @@ export default {
         'Several days'
       ],
       languages: [
-        'English',
-        'Spanish',
-        'German',
-        'French',
+        {
+          title: 'English',
+          value: 'english'
+        },
+        {
+          title: 'Spanish',
+          value: 'spanish'
+        },
+        {
+          title: 'German',
+          value: 'german'
+        },
+        {
+          title: 'French',
+          value: 'french'
+        }
       ]
     }
   }),
@@ -254,6 +266,9 @@ export default {
   methods: {
     sortTours (el) {
       this.$store.commit('sortTours', el.value)
+    },
+    checkedProp() {
+      console.log(1);
     }
   },
   created () {

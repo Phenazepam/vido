@@ -1,13 +1,11 @@
 <template>
-  <label class="checkbox" >
+  <label class="checkbox" @click="checked">
     <span class="checkbox__input">
 
-      <input type="checkbox" name="checked" :value="value">
+      <input type="checkbox" :value="value">
 
       <span class="checkbox__control"
-        :class="{ 
-          checkbox__control_inverse: type === 'inverse' 
-        }"
+        :class="{ checkbox__control_inverse: type === 'inverse' }"
       >
         <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path 
@@ -36,11 +34,16 @@ import '@/assets/checkbox.scss'
 export default {
   name: 'Checkbox',
   data: () => ({
-    checked: false
+    counter: 0
   }),
   props: {
     value: [ Number, Object, String, Array, Boolean ],
     type: String
+  },
+  methods: {
+    checked() {
+      this.$emit('input', this.counter++)
+    }
   }
 
 }

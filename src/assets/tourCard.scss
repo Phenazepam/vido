@@ -75,9 +75,21 @@
     font-size: 12px;
     border-radius: 4px;
     padding: 3px 8px;
-    background: $blue;
     color: $white;
     margin-bottom: 8px;
+
+    &_outdoor {
+      background: $blue;
+    }
+
+    &_sailing { 
+      background: #FF7EB9;
+    }
+
+    &_sightseeing {  
+      background: #F8A04F;
+    }
+
   }
 
   &__about {

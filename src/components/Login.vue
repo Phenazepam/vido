@@ -19,20 +19,24 @@
     <div class="auth__control control">
       <div class="control__item">
         <input-fileds
+          authorisation
           type="email"
           placeholder="E-mail"
         />
       </div>
       <div class="control__item">
         <input-fileds
+          authorisation
           type="password"
           placeholder="Password"
         />
       </div>
       <div class="control__item">
-        <Checkbox 
-          title="Запомнить меня"
-        />
+        <checkbox>
+          <template v-slot:title>
+            Запомнить меня
+          </template>
+        </checkbox>
       </div>
       <div class="control__item control_action">
         <btn class="btn_primary btn_auth">
