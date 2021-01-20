@@ -1,10 +1,8 @@
 const filterEvents = {
   time: state => {
-    
     return state.filter(el => {
       return el.id <= 4
     })
-    
   },
   travel: state => {
     return state.filter(el => {
@@ -13,7 +11,7 @@ const filterEvents = {
   },
   duration: state => {
     return state.filter(el => {
-      return el.id <= 3 && el.id >= 7 
+      return el.id >= 3 && el.id <= 7 
     })
   },
   languages: state => {

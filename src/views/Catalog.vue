@@ -21,7 +21,7 @@
     <div class="page-catalog catalog">
 
       <!-- category -->
-      <!-- <div class="catalog-category category">
+      <div class="catalog-category category">
         <div class="category__item"
           v-for="el in category"
           :key="el"
@@ -29,7 +29,7 @@
           <p>{{ el }}</p>
           <img src="@/../public/imgs/wooman.png">
         </div>
-      </div> -->
+      </div>
 
       <div class="catalog-main">
 
@@ -307,67 +307,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  .page {
-    &-section {
-      width: 100%;
-      max-width: 1150px;
-      margin: auto;
-
-      &__header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-
-    &-row {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    &-justify-between {
-      justify-content: space-between;
-    }
-
-    &-breadcrumbs {
-      font-weight: 500;
-      font-size: 12px;
-      color: $text-secondary;
-    }
-
-    &-title {
-      font-weight: bold;
-      font-size: 36px;
-      color: $text-primary;
-      padding: 0 0 24px 0;
-    }
-
-    &-info {
-      background: #FFF4E1;
-      padding: 15px;
-      color: #7E776A;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 8px;
-      margin: 0 0 15px 0;
-      
-      a {
-        color: $primary;
-      }
-    }
-  }
-
-  .list-item {
-    display: inline-block;
-    margin-right: 10px;
-  }
-  .list-enter-active, .list-leave-active {
-    transition: all .5s;
-  }
-  .list-enter, .list-leave-to /* .list-leave-active до версии 2.1.8 */ {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-</style>
