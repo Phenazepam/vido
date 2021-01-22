@@ -360,6 +360,7 @@
           </div>
         </div>
       </div>
+      <CheckAvailability/>
       <div class="event__sights">
         <div class="event__sights-title">Sights</div>
         <div class="event__sights-text">
@@ -469,13 +470,13 @@
 </template>
 <script>
 import ViCardCarousel from "@/components/vi-card-carousel.vue";
-//import CheckAvailability from "@/components/CheckAvailability.vue";
+import CheckAvailability from "@/components/CheckAvailability.vue";
 import axios from "axios";
 import { mapState, mapGetters } from "vuex";
 export default {
   name: "Event",
   components: {
-    ViCardCarousel, //CheckAvailability
+    ViCardCarousel, CheckAvailability
   },
   data() {
     return {
