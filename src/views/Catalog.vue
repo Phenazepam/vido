@@ -35,7 +35,7 @@
 
         <!-- catalog-sidebar -->
         <div class="catalog-sidebar">
-          <form>
+          <form ref="form" @submit.prevent="filtersEvents">
             <div class="catalog-sidebar__select-dates">
               <p>When are you traveling?</p>
               <input-fileds
@@ -43,7 +43,7 @@
                 placeholder="Select Dates"/>
             </div>
 
-            <div class="catalog-sidebar__item">
+            <!-- <div class="catalog-sidebar__item">
               <div class="catalog-sidebar__title" >
                 Time
               </div>
@@ -52,17 +52,18 @@
                 :key="el.title"
               >
                 <checkbox 
-                  type="inverse" 
-                  @isChecked="isChecked($event, 'time')"
+                  type="inverse"
+                  :value="el.value"
+                  @input="filter"
                 >
                   <template v-slot:title>
                     {{ el.title }}
                   </template>
                 </checkbox>
               </div>
-            </div>
+            </div> -->
 
-            <div class="catalog-sidebar__item">
+            <!-- <div class="catalog-sidebar__item">
               <div class="catalog-sidebar__title">
                 Travel Services
               </div>
@@ -79,9 +80,9 @@
                   </template>
                 </checkbox>
               </div>
-            </div>
+            </div> -->
 
-            <div class="catalog-sidebar__item">
+            <!-- <div class="catalog-sidebar__item">
               <div class="catalog-sidebar__title">
                 Duration
               </div>
@@ -98,7 +99,7 @@
                   </checkbox-tag>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="catalog-sidebar__item">
               <div class="catalog-sidebar__title">
@@ -106,20 +107,17 @@
               </div>
               <div class="page-row">
                 <div class="catalog-sidebar__control catalog-sidebar__control_tag"
-                  v-for="el in sidebarFilters.languages"
-                  :key="el.value"
+                  v-for="el in filters.languages.value"
+                  :key="el"
                 >
-                  <checkbox-tag 
-                    value="el"
-                    @isChecked="isChecked($event, 'languages')"
-                  >
-                    {{ el.title }}
+                  <checkbox-tag @input="filtration({ languages: el })">
+                    {{ el }}
                   </checkbox-tag>
                 </div>
               </div>
             </div>
 
-            <div class="catalog-sidebar__item">
+            <!-- <div class="catalog-sidebar__item">
               <div class="catalog-sidebar__title">
                 Other filters
               </div>
@@ -136,7 +134,7 @@
                   </template>
                 </checkbox>
               </div>
-            </div>
+            </div> -->
           </form>
         </div>
 
@@ -159,18 +157,19 @@
               />  
             </div>
           </div>
+
           <transition-group name="list" tag="div">
-          <div class="catalog-events__item"
-            v-for="tour in tours"
-            :key="tour.id"
-          >
-            
+            <div class="catalog-events__item"
+              v-for="tour in tours"
+              :key="tour.id"
+            >
               <tour-card 
                 horizontal
                 :data="tour"
               ></tour-card>
-          </div>
-            </transition-group>
+            </div>
+          </transition-group>
+
         </div>
 
       </div>
@@ -191,6 +190,8 @@ import TourCard from '@/components/TourCard'
 import Btn from '@/components/controls/Btn'
 
 import { mapState } from 'vuex'
+
+ 
 
 export default {
   name: 'Catalog',
@@ -272,7 +273,26 @@ export default {
           value: 'french'
         }
       ]
+    },
+
+    filters: {
+      languages: {
+        value: ['english', 'spanish', 'german', 'french'],
+        parameters: [],
+        filtration: ({ events, parameters, value }) => {
+          return parameters.reduce((events, parameter) => {
+            return events.filter(n => {
+              if (n.properties.languages.includes(parameter)) {
+                console.log(n);
+                return n 
+              }
+            })
+          }, events)
+        },
+      },
+  
     }
+
   }),
   computed: {
     ...mapState({
@@ -283,19 +303,24 @@ export default {
     sortTours (el) {
       this.$store.commit('sortTours', el.value)
     },
-    checkedProp() {
 
-    },
-    isChecked(event, prop) {
-      if (event) {
-        this.$store.commit('filterTours', prop)
+    filtration (value) {
+      const prop = Object.keys(value)
+
+      if(!this.filters[prop].parameters.includes(value[prop])) {
+        this.filters[prop].parameters
+          .push(value[prop])
       } else {
-        this.$store.dispatch('getTours')
-      }
+        this.filters[prop].parameters
+          .splice(this.filters[prop].parameters.indexOf(value[prop]), 1)
+      }  
+
+      this.$store.commit('filterEvents', this.filters[prop])
     }
+    
   },
   created () {
-    this.$store.dispatch('getTours')
+    this.$store.dispatch('getTours')  
   },
   components: {
     Checkbox,

@@ -117,7 +117,7 @@ new Server({
               new: null
             },
             duration: 120,
-            languages: ['English', 'Spanish', 'German'],
+            languages: ['french'],
             time: '08:00',
 
           }
@@ -140,7 +140,7 @@ new Server({
               new: '15.22'
             },
             duration: 120,
-            languages: ['English', 'Spanish', 'German'],
+            languages: ['french'],
             time: '09:00',
 
           }
@@ -163,7 +163,7 @@ new Server({
               new: null
             },
             duration: 120,
-            languages: ['English', 'Spanish', 'German'],
+            languages: ['german'],
             time: '08:30',
           }
         },
@@ -185,7 +185,7 @@ new Server({
               new: null
             },
             duration: 120,
-            languages: ['English', 'Spanish', 'German'],
+            languages: ['english', 'german'],
             time: '13:00',
           }
         },
@@ -207,7 +207,7 @@ new Server({
               new: null
             },
             duration: 120,
-            languages: ['English', 'Spanish', 'German'],
+            languages: ['english', 'spanish', 'german'],
             time: null,
           }
         },
@@ -229,7 +229,7 @@ new Server({
               new: null
             },
             duration: 120,
-            languages: ['English', 'Spanish', 'German'],
+            languages: ['english', 'spanish', 'german'],
             time: '13:50',
           }
         },
@@ -251,7 +251,7 @@ new Server({
               new: '10.12'
             },
             duration: 120,
-            languages: ['English', 'Spanish', 'German'],
+            languages: ['english', 'spanish', 'german'],
             time: '14:50',
           }
         },
@@ -273,7 +273,7 @@ new Server({
               new: '10.12'
             },
             duration: 120,
-            languages: ['English', 'Spanish', 'German'],
+            languages: ['english', 'spanish', 'german'],
             time: '14:50',
           }
         },

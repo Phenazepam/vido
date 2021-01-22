@@ -43,7 +43,7 @@ export default {
   methods: {
     checked() {
       this.isChecked = !this.isChecked
-      this.$emit('isChecked', this.isChecked)
+      this.$emit('input', this.isChecked)
     }
   }
 

@@ -1,14 +1,14 @@
 import axios from 'axios'
 import sortingBy from '@/sortingBy'
-import filterEvents from '@/filterEvents'
-
 
 export default {
   state: {
-    tours: []
+    tours: [],
+    general: []
   },
   mutations: {
     updateStateTours: (state, update) => {
+      state.general = update
       state.tours = update
     },
 
@@ -16,10 +16,13 @@ export default {
       state.tours = sortingBy[sort](state.tours)
     },
 
-    filterTours: (state, prop) => {
-      state.tours = filterEvents[prop](state.tours)
+    filterEvents: (state, filter) => {
+      const events = state.general
+      const parameters = filter.parameters
+
+      state.tours = filter.filtration({ events, parameters })
     }
-  },
+  },  
   actions: {
     getTours: async ({ commit }) => {
       const result = await axios.get('/api/events')
