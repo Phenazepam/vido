@@ -116,10 +116,10 @@ new Server({
               base: '24.00',
               new: null
             },
-            duration: 120,
+            duration: 180,
             languages: ['french'],
             time: '08:00',
-
+            service: 'Private Tours'
           }
         },
         {
@@ -139,9 +139,10 @@ new Server({
               base: '23.12',
               new: '15.22'
             },
-            duration: 120,
+            duration: 20,
             languages: ['french'],
             time: '09:00',
+            service: 'Private Tours'
 
           }
         },
@@ -162,9 +163,10 @@ new Server({
               base: '21.00',
               new: null
             },
-            duration: 120,
+            duration: 180,
             languages: ['german'],
             time: '08:30',
+            service: 'Private Tours'
           }
         },
         {
@@ -184,9 +186,10 @@ new Server({
               base: '12.00',
               new: null
             },
-            duration: 120,
+            duration: 180,
             languages: ['english', 'german'],
             time: '13:00',
+            service: 'Private Tours'
           }
         },
         {
@@ -206,9 +209,10 @@ new Server({
               base: '6.00',
               new: null
             },
-            duration: 120,
+            duration: 60,
             languages: ['english', 'spanish', 'german'],
             time: null,
+            service: 'Kid friendly'
           }
         },
         {
@@ -228,9 +232,10 @@ new Server({
               base: '18.00',
               new: null
             },
-            duration: 120,
+            duration: 180,
             languages: ['english', 'spanish', 'german'],
             time: '13:50',
+            service: 'Deals & Discounts'
           }
         },
         {
@@ -250,9 +255,10 @@ new Server({
               base: '28.00',
               new: '10.12'
             },
-            duration: 120,
+            duration: 180,
             languages: ['english', 'spanish', 'german'],
             time: '14:50',
+            service: 'Free Cancellation'
           }
         },
         {
@@ -272,9 +278,10 @@ new Server({
               base: '25.00',
               new: '10.12'
             },
-            duration: 120,
+            duration: 60,
             languages: ['english', 'spanish', 'german'],
             time: '14:50',
+            service: 'Wheelchair accessible'
           }
         },
       ])

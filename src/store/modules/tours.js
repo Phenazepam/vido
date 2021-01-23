@@ -4,7 +4,9 @@ import sortingBy from '@/sortingBy'
 export default {
   state: {
     tours: [],
-    general: []
+    general: [],
+    logger: {},
+    counter: 0
   },
   mutations: {
     updateStateTours: (state, update) => {
@@ -17,10 +19,20 @@ export default {
     },
 
     filterEvents: (state, filter) => {
-      const events = state.general
-      const parameters = filter.parameters
 
-      state.tours = filter.filtration({ events, parameters })
+      state.logger[filter.name] = filter 
+      state.logger[filter.name].counter = state.counter++
+
+      state.tours = Object.values(state.logger)
+        .sort((a, b) => a.counter - b.counter)
+        .reduce((events, { filtration, parameters, options }) => {
+          return events = filtration({
+            events: state.general,
+            parameters: parameters.length ? parameters : options.map(n => n.value) 
+          })
+        }, state.general)
+      
+
     }
   },  
   actions: {

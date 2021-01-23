@@ -63,43 +63,40 @@
               </div>
             </div> -->
 
-            <!-- <div class="catalog-sidebar__item">
+            <div class="catalog-sidebar__item">
               <div class="catalog-sidebar__title">
                 Travel Services
               </div>
               <div class="catalog-sidebar__control"
-                v-for="el in sidebarFilters.travel"
-                :key="el"
+                v-for="(el, i) in filters.service.options"
+                :key="i"
               >
                 <checkbox 
                   type="inverse"
-                  @isChecked="isChecked($event, 'travel')"
+                  @input="filtration({ service: el.value })"
                 >
                   <template v-slot:title>
-                    {{ el }}
+                    {{ el.name }}
                   </template>
                 </checkbox>
               </div>
-            </div> -->
+            </div>
 
-            <!-- <div class="catalog-sidebar__item">
+            <div class="catalog-sidebar__item">
               <div class="catalog-sidebar__title">
                 Duration
               </div>
               <div class="page-row">
                 <div class="catalog-sidebar__control catalog-sidebar__control_tag"
-                  v-for="(el, i) in sidebarFilters.duration"
+                  v-for="(el, i) in filters.duration.options"
                   :key="i"
                 >
-                  <checkbox-tag 
-                    :value="el"
-                    @isChecked="isChecked($event, 'duration')"
-                  >
-                    {{ el }}
+                  <checkbox-tag @input="filtration({ duration: el.value })">
+                    {{ el.name }}
                   </checkbox-tag>
                 </div>
               </div>
-            </div> -->
+            </div>
 
             <div class="catalog-sidebar__item">
               <div class="catalog-sidebar__title">
@@ -107,11 +104,11 @@
               </div>
               <div class="page-row">
                 <div class="catalog-sidebar__control catalog-sidebar__control_tag"
-                  v-for="el in filters.languages.value"
-                  :key="el"
+                  v-for="(el, i) in filters.languages.options"
+                  :key="i"
                 >
-                  <checkbox-tag @input="filtration({ languages: el })">
-                    {{ el }}
+                  <checkbox-tag @input="filtration({ languages: el.value })">
+                    {{ el.name }}
                   </checkbox-tag>
                 </div>
               </div>
@@ -277,19 +274,111 @@ export default {
 
     filters: {
       languages: {
-        value: ['english', 'spanish', 'german', 'french'],
+        name: 'languages',
+        options: [
+          {
+            name: 'english', 
+            value: 'english'
+          },
+          { 
+            name: 'spanish', 
+            value: 'spanish'
+          },
+          { 
+            name: 'german', 
+            value: 'german'
+          },
+          {
+            name: 'french',
+            value: 'french'
+          }
+        ],
         parameters: [],
-        filtration: ({ events, parameters, value }) => {
-          return parameters.reduce((events, parameter) => {
-            return events.filter(n => {
-              if (n.properties.languages.includes(parameter)) {
-                console.log(n);
-                return n 
+        filtration: ({ events, parameters }, array = []) => {
+          events.forEach(event => {
+            event.properties.languages.forEach( el => {
+              if (parameters.includes(el)) {
+                if (!array.includes(event)) {
+                  array.push(event)
+                }
               }
             })
-          }, events)
-        },
+          })
+          return array
+        }
       },
+      duration: {
+        name: 'duration',
+        options: [
+          { 
+            name: 'All day', 
+            value: 720
+          },
+          { 
+            name: '1-3 hours', 
+            value: 60
+          },
+          { 
+            name: '3-6 hours', 
+            value: 180
+          },
+          { 
+            name: 'Up to 1 hour', 
+            value: 20
+          },
+          { 
+            name: 'Several days', 
+            value: 120
+          },
+        ],
+        parameters: [],
+        filtration: ({ events, parameters }, array = []) => {
+          events.forEach(event => {
+            if (parameters.includes(event.properties.duration)) {
+              if(!array.includes(event)) {
+                array.push(event)
+              }
+            }
+          })
+          return array
+        }
+      },
+      service: {
+        name: 'service',
+        options: [
+          { 
+            name: 'Private Tours', 
+            value: 'Private Tours'
+          },
+          { 
+            name: 'Kid friendly', 
+            value: 'Kid friendly'
+          },
+          { 
+            name: 'Deals & Discounts', 
+            value: 'Deals & Discounts'
+          },
+          { 
+            name: 'Free Cancellation', 
+            value: 'Free Cancellation'
+          },
+          { 
+            name: 'Wheelchair accessible', 
+            value: 'Wheelchair accessible'
+          },
+        ],
+        parameters: [],
+        filtration: ({ events, parameters }, array = []) => {
+          events.forEach(event => {
+            if (parameters.includes(event.properties.service)) {
+              if(!array.includes(event)) {
+                array.push(event)
+              }
+            }
+          })
+          return array
+        }
+      }
   
     }
 
@@ -304,15 +393,13 @@ export default {
       this.$store.commit('sortTours', el.value)
     },
 
-    filtration (value) {
-      const prop = Object.keys(value)
+    filtration (options) {
+      const prop = Object.keys(options)
 
-      if(!this.filters[prop].parameters.includes(value[prop])) {
-        this.filters[prop].parameters
-          .push(value[prop])
+      if(!this.filters[prop].parameters.includes(options[prop])) {
+        this.filters[prop].parameters.push(options[prop])
       } else {
-        this.filters[prop].parameters
-          .splice(this.filters[prop].parameters.indexOf(value[prop]), 1)
+        this.filters[prop].parameters.splice(this.filters[prop].parameters.indexOf(options[prop]), 1)
       }  
 
       this.$store.commit('filterEvents', this.filters[prop])
