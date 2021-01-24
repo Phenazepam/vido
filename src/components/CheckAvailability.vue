@@ -4,7 +4,7 @@
     <div class="check__controls">
       <div class="row justify-between">
         <div class="check__controls-person">
-          <div class="check__controls-person-preview" @click="isOpen = !isOpen">
+          <div class="check__controls-person-preview" @click="expandOpen">
             <div class="check__controls-person-preview-icon">
               <svg
                 width="24"
@@ -304,10 +304,7 @@
           </transition>
         </div>
         <div class="check__controls-language">
-          <div
-            class="check__controls-language-preview"
-            @click="isOpen = !isOpen"
-          >
+          <div class="check__controls-language-preview" @click="expandOpen">
             <div class="check__controls-language-preview-icon">
               <svg
                 width="20"
@@ -344,7 +341,7 @@
                 v-for="(v, k) in languages"
                 :key="k"
                 class="check__controls-language-expand-item"
-                :class="{active: v.isActive}"
+                :class="{ active: v.isActive }"
                 @click="changeActiveLanguage(v)"
               >
                 {{ v.title }}
@@ -352,13 +349,35 @@
             </div>
           </transition>
         </div>
-        <div class="check__controls-date">3</div>
+        <transition name="checkFade">
+          <div
+            class="check__controls-date"
+            :class="{ 'check__controls-date-expand': isOpen }"
+            @click=" !isOpen ? expandOpen() : ''"
+          >
+            <div class="check__controls-date-title">
+              <datepicker
+                ref="programaticOpen"
+                class="check__controls-date-datepicker"
+                :class="{'dt-inline' : !isOpen}"
+                :inline="isOpen"
+                calendar-class="dt"
+                wrapper-class="dt"
+                
+              ></datepicker>
+            </div>
+          </div>
+        </transition>
       </div>
     </div>
   </div>
 </template>
 <script>
+import Datepicker from "vuejs-datepicker";
 export default {
+  components: {
+    Datepicker,
+  },
   data() {
     return {
       isOpen: false,
@@ -373,34 +392,43 @@ export default {
       preview: "",
       languages: [
         {
-          title:"Without audio guide",
-          isActive: true
+          title: "Without audio guide",
+          isActive: true,
         },
         {
-          title:"English",
-          isActive: false
+          title: "English",
+          isActive: false,
         },
         {
-          title:"German",
-          isActive: false
+          title: "German",
+          isActive: false,
         },
         {
-          title:"French",
-          isActive: false
+          title: "French",
+          isActive: false,
         },
         {
-          title:"Russian",
-          isActive: false
+          title: "Russian",
+          isActive: false,
         },
         {
-          title:"Polish",
-          isActive: false
+          title: "Polish",
+          isActive: false,
         },
       ],
-      previewLanguage: '',
+      previewLanguage: "",
+      DatepickerInline: true,
     };
   },
   methods: {
+    expandOpen() {
+      this.isOpen = !this.isOpen;
+      if (this.isOpen) {
+        this.$refs.programaticOpen.showCalendar();
+      } else {
+        this.$refs.programaticOpen.close(true);
+      }
+    },
     plus(index) {
       this.persons[index]++;
       this.changePersonPreview();
@@ -419,14 +447,16 @@ export default {
         }
       }
     },
-    changeActiveLanguage(item){
-      this.languages.forEach((item)=>{item.isActive = false})
-      item.isActive = true
-      this.previewLanguage = item.title
-    }
+    changeActiveLanguage(item) {
+      this.languages.forEach((item) => {
+        item.isActive = false;
+      });
+      item.isActive = true;
+      this.previewLanguage = item.title;
+    },
   },
   mounted() {
-    this.previewLanguage = this.languages[0].title
+    this.previewLanguage = this.languages[0].title;
   },
 };
 </script>
@@ -587,8 +617,54 @@ export default {
       height: 46px;
       background: #ffffff;
       border-radius: 12px;
+      &-datepicker {
+        width: inherit;
+        height: inherit;
+      }
+      &-expand {
+        // padding: 10px 16px;
+        height: 259px + 46px;
+      }
+      /* &-title:hover{
+        background-color: #d5e1e6;
+        border-radius: 12px;
+      } */
     }
   }
+}
+.dt-inline {
+  border-radius: 12px;
+  line-height: 2px;
+  height: 305px;
+  min-width: 305px;
+  pointer-events: none;
+}
+.dt {
+  border-radius: 12px;
+  line-height: 2px;
+  height: 305px;
+  min-width: 305px;
+}
+.vdp-datepicker input[type="text"]:read-only {
+  width: 305px !important;
+  height: 46px !important;
+  border-radius: 12px !important;
+  border: transparent !important;
+  cursor: pointer;
+  font-weight: 600;
+  padding-left: 16px;
+  font-size: 18px;
+}
+/* .vdp-datepicker input[type="text"]:read-only:hover {
+  background-color: #d5e1e6;
+  border-radius: 12px;
+} */
+.vdp-datepicker__calendar .cell {
+  height: 37px !important;
+  line-height: 37px !important;
+}
+.vdp-datepicker__calendar .cell.selected {
+  background-color: $primary !important;
 }
 .minus-btn {
   cursor: pointer;
@@ -612,7 +688,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.active{
+.active {
   background-color: #d5e1e6;
   border-radius: 12px;
 }
