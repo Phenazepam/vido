@@ -69,7 +69,7 @@
       </div>
 
       <div v-else class="header__action" style="width: 120px">
-        <p style="font-size: 14px;"> Личный кабинет</p>
+        <p style="font-size: 14px;">{{ login.name + ' ' + login.lastName }}</p>
       </div>
 
     </header>
