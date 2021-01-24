@@ -303,8 +303,55 @@
             </div>
           </transition>
         </div>
-
-        <div class="check__controls-language">2</div>
+        <div class="check__controls-language">
+          <div
+            class="check__controls-language-preview"
+            @click="isOpen = !isOpen"
+          >
+            <div class="check__controls-language-preview-icon">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 0C4.486 0 0 4.486 0 10C0 15.514 4.486 20 10 20C15.514 20 20 15.514 20 10C20 4.486 15.514 0 10 0ZM2 10C2 9.101 2.156 8.238 2.431 7.431L4 9L6 11V13L8 15L9 16V17.931C5.061 17.436 2 14.072 2 10ZM16.33 14.873C15.677 14.347 14.687 14 14 14V13C14 11.896 13.104 11 12 11H8V9V8C9.104 8 10 7.104 10 6V5H11C12.104 5 13 4.104 13 3V2.589C15.928 3.778 18 6.65 18 10C18 11.835 17.373 13.522 16.33 14.873Z"
+                  fill="#1E2843"
+                />
+              </svg>
+            </div>
+            <div class="check__controls-language-preview-text">
+              {{ previewLanguage }}
+            </div>
+            <div class="check__controls-person-preview-btn">
+              <svg
+                width="14"
+                height="9"
+                viewBox="0 0 14 9"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M1 1L7 7L13 1" stroke="#8F93A1" stroke-width="1.5" />
+              </svg>
+            </div>
+          </div>
+          <hr v-if="isOpen" />
+          <transition name="checkFade">
+            <div v-if="isOpen" class="check__controls-language-expand">
+              <div
+                v-for="(v, k) in languages"
+                :key="k"
+                class="check__controls-language-expand-item"
+                :class="{active: v.isActive}"
+                @click="changeActiveLanguage(v)"
+              >
+                {{ v.title }}
+              </div>
+            </div>
+          </transition>
+        </div>
         <div class="check__controls-date">3</div>
       </div>
     </div>
@@ -324,20 +371,47 @@ export default {
         Infant: 0,
       },
       preview: "",
+      languages: [
+        {
+          title:"Without audio guide",
+          isActive: true
+        },
+        {
+          title:"English",
+          isActive: false
+        },
+        {
+          title:"German",
+          isActive: false
+        },
+        {
+          title:"French",
+          isActive: false
+        },
+        {
+          title:"Russian",
+          isActive: false
+        },
+        {
+          title:"Polish",
+          isActive: false
+        },
+      ],
+      previewLanguage: '',
     };
   },
   methods: {
     plus(index) {
       this.persons[index]++;
-      this.changePreview();
+      this.changePersonPreview();
     },
     minus(index) {
       if (this.persons[index] > 0) {
         this.persons[index]--;
-        this.changePreview();
+        this.changePersonPreview();
       }
     },
-    changePreview() {
+    changePersonPreview() {
       this.preview = "";
       for (let key in this.persons) {
         if (this.persons[key] > 0) {
@@ -345,6 +419,14 @@ export default {
         }
       }
     },
+    changeActiveLanguage(item){
+      this.languages.forEach((item)=>{item.isActive = false})
+      item.isActive = true
+      this.previewLanguage = item.title
+    }
+  },
+  mounted() {
+    this.previewLanguage = this.languages[0].title
   },
 };
 </script>
@@ -427,10 +509,78 @@ export default {
       }
     }
     &-language {
-      width: 305px;
-      height: 46px;
-      background: #ffffff;
+      background-color: white;
       border-radius: 12px;
+      &-preview {
+        width: 305px;
+        height: 46px;
+        display: flex;
+        position: relative;
+        cursor: pointer;
+        transition: 0.3s;
+        &-icon {
+          padding-left: 16px;
+          height: inherit;
+          display: flex;
+          justify-content: start;
+          align-items: center;
+        }
+        &-text {
+          padding-left: 16px;
+          height: inherit;
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 21px;
+          color: #1e2843;
+        }
+        &-btn {
+          position: absolute;
+          right: 15px;
+          top: 15px;
+        }
+      }
+      &-preview:hover {
+        background-color: #d5e1e6;
+        border-radius: 12px;
+      }
+      &-expand {
+        padding: 10px 16px;
+        height: 259px;
+        &-item {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 0;
+          padding-left: 5px;
+          cursor: pointer;
+          &-text {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            line-height: 16px;
+            &-title {
+              padding-right: 3px;
+              font-weight: 500;
+              font-size: 18px;
+              line-height: 21px;
+            }
+          }
+          &-control {
+            display: flex;
+            align-items: center;
+            &-value {
+              width: 20px;
+              text-align: center;
+            }
+          }
+        }
+        &-item:hover {
+          background-color: #d5e1e6;
+          border-radius: 12px;
+        }
+      }
     }
     &-date {
       width: 305px;
@@ -462,11 +612,15 @@ export default {
   align-items: center;
   justify-content: center;
 }
+.active{
+  background-color: #d5e1e6;
+  border-radius: 12px;
+}
 .checkFade-enter-active {
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 .checkFade-leave-active {
-  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .checkFade-enter, .checkFade-leave-to
 /* .slide-checkFade-leave-active до версии 2.1.8 */ {
