@@ -45,9 +45,13 @@
 
     <input :type="type" 
       class="input__field input__field_authorisation" 
+      :class="{input__field_error: error}"
       :placeholder="placeholder"
       @input="setValue"
     >
+    <div class="input__error" v-if="error">
+      <p>{{ errorMessage }}</p>
+    </div>
   </label>
 
 
@@ -64,6 +68,8 @@ export default {
     placeholder: String,
     title: String,
     type: String,
+    error: Boolean,
+    errorMessage: String,
     value: [String, Number, Object, Array],
     // Input type
     search: Boolean,

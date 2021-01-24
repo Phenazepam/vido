@@ -7,7 +7,8 @@ import './mirageServer.js'
 
 import '@/assets/styles.scss'
 
-Vue.component
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
 

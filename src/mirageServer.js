@@ -96,7 +96,8 @@ new Server({
             price: "27.00",
           },
         ]);
-    }),
+    })
+
     this.get('api/events', () => {
       return JSON.stringify([
         {
@@ -286,6 +287,7 @@ new Server({
         },
       ])
     })
+
     this.get('/api/card/:id', (schema, request)=>{
       const id = request.params.id
       switch (id) {
@@ -392,5 +394,6 @@ new Server({
           return {}
       }
     })
+
   },
 });

@@ -61,13 +61,15 @@
         </router-link>
       </div>
 
-      <div class="header__action" @click="auth.state = true">
-        <btn
-          class="btn_primary btn_singin"
-          
-        >
+
+      <div v-if="!login" class="header__action" @click="auth.state = true">
+        <btn class="btn_primary btn_singin">
           Sing in
         </btn>
+      </div>
+
+      <div v-else class="header__action" style="width: 120px">
+        <p style="font-size: 14px;"> Личный кабинет</p>
       </div>
 
     </header>
@@ -183,6 +185,8 @@ import viSelect from '@/components/vi-select'
 import Btn from '@/components/controls/Btn'
 import Icon from '@/components/Icon'
 
+import { mapState } from 'vuex'
+
 export default {
   name: "main-layout",
   data: () => ({
@@ -190,10 +194,15 @@ export default {
       state: false 
     },
     selectedLanguage: { value: 0, img: require('@/../public/imgs/header_language_polish.png') },
-    languageOptions: [
-      
-    ],
   }),
+  computed: {
+    ...mapState({
+      login: state => state.auth.auth
+    })
+  },
+  created() {
+    this.$store.dispatch('isLogin')
+  },
   methods: {
     controlStateAuth (state) {
       this.auth.state = state

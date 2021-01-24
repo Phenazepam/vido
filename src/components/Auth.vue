@@ -3,18 +3,16 @@
     v-if="stateAuth"
     class="auth-wrapper" 
   >
-    
-
-    <login 
+    <!-- <login 
       @stateAuth="closeAuth"
       @statePopup="switchPopup"
       :state="state"
-    />
+    /> -->
 
     <registration 
       @stateAuth="closeAuth"
       @statePopup="switchPopup"
-      :state="!state"
+      :state="state"
     />
 
   </div>
@@ -28,7 +26,7 @@ import Login from '@/components/Login'
 export default {
   name: 'Auth',
   data: () => ({
-    state: true
+    state: true,
   }),
   props: {
     stateAuth: Boolean

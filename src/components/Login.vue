@@ -19,6 +19,9 @@
     <div class="auth__control control">
       <div class="control__item">
         <input-fileds
+          v-model.trim="$v.form.email.$model"
+          :error="$v.form.email.$error"
+          :errorMessage="'Invalid email.'"
           authorisation
           type="email"
           placeholder="E-mail"
@@ -26,6 +29,9 @@
       </div>
       <div class="control__item">
         <input-fileds
+          v-model.trim="$v.form.password.$model"
+          :error="$v.form.password.$error"
+          :errorMessage="'Invalid password.'"
           authorisation
           type="password"
           placeholder="Password"
@@ -38,8 +44,8 @@
           </template>
         </checkbox>
       </div>
-      <div class="control__item control_action">
-        <btn class="btn_primary btn_auth">
+      <div class="control__item control_action" @click="login">
+        <btn class="btn_primary btn_auth" >
           <icon 
             name="icon icon_lock" 
             :opacity="0.5"
@@ -55,6 +61,8 @@
 </template>
 
 <script>
+import { required, minLength, email } from 'vuelidate/lib/validators'
+
 import InputFileds from './controls/InputFileds'
 import Checkbox from './controls/Checkbox'
 import Icon from './Icon'
@@ -63,10 +71,25 @@ import Btn from './controls/Btn'
 export default {
   name: 'login',
   data: () => ({
-
+    form: {
+      email: '',
+      password: ''
+    }
   }),
   props: {
     state: Boolean
+  },
+  validations: {
+    form: {
+      email: {
+        required,
+        email
+      },
+      password: {
+        required,
+        minLength: minLength(6)
+      }
+    }
   },
   methods: {
     closeAuthForm () {
@@ -74,6 +97,23 @@ export default {
     },
     switchPopup () {
       this.$emit('statePopup', false)
+    },
+    login () {
+    
+      this.$v.$touch()
+      
+      if (!this.$v.$invalid) {
+        const result = this.$store.dispatch('login', this.form)
+
+        result.then(res => {
+          if(res.successfully) {
+            this.closeAuthForm()
+          } else {
+
+          }
+        })
+
+      }
     }
   },
   components: {
